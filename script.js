@@ -73,6 +73,13 @@ function loadQuestion(){
 
     const q = questions[currentQuestion];
 
+    questionNumber.textContent = currentQuestion + 1;
+
+    progressBar.style.width =
+((currentQuestion) / questions.length) * 100 + "%";
+
+startTimer();
+
     questionEl.textContent = q.question;
     answersEl.innerHTML = "";
 
@@ -92,6 +99,8 @@ function loadQuestion(){
 
 function selectAnswer(button,index){
 
+    clearInterval(timer);
+    
     const buttons=document.querySelectorAll(".answer-btn");
 
     buttons.forEach(btn=>btn.disabled=true);
@@ -109,11 +118,15 @@ function selectAnswer(button,index){
 
     }
 
-    nextBtn.style.display="block";
+    setTimeout(() => {
+
+    nextQuestion();
+
+},1500);
 
 }
 
-nextBtn.onclick=function(){
+function nextQuestion(){
 
     currentQuestion++;
 
@@ -129,7 +142,36 @@ nextBtn.onclick=function(){
 
 }
 
+nextBtn.onclick = nextQuestion;
+
+function startTimer(){
+
+    clearInterval(timer);
+
+    timeLeft = 15;
+    timerEl.textContent = timeLeft;
+
+    timer = setInterval(()=>{
+
+        timeLeft--;
+
+        timerEl.textContent = timeLeft;
+
+        if(timeLeft<=0){
+
+            clearInterval(timer);
+
+            nextQuestion();
+
+        }
+
+    },1000);
+
+}
+
 function showResult(){
+
+    progressBar.style.width = "100%";
 
     questionEl.innerHTML=`🎉 Skor kamu <br><h2>${score}/${questions.length}</h2>`;
 

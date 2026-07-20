@@ -54,9 +54,16 @@ const questions = [
 let currentQuestion = 0;
 let score = 0;
 
+let timeLeft = 15;
+let timer;
+
 const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
 const nextBtn = document.getElementById("next");
+
+const timerEl = document.getElementById("timer");
+const progressBar = document.getElementById("progressBar");
+const questionNumber = document.getElementById("questionNumber");
 
 loadQuestion();
 

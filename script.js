@@ -54,6 +54,9 @@ const questions = [
 let currentQuestion = 0;
 let score = 0;
 
+const correctSound = new Audio("correct.mp3");
+const wrongSound = new Audio("wrong.mp3");
+
 let timeLeft = 15;
 let timer;
 
@@ -107,14 +110,16 @@ function selectAnswer(button,index){
 
     if(index===questions[currentQuestion].correct){
 
-        button.classList.add("correct");
-        score++;
+    button.classList.add("correct");
+    correctSound.play();
+    score++;
 
-    }else{
+}else{
 
-        button.classList.add("wrong");
+    button.classList.add("wrong");
+    wrongSound.play();
 
-        buttons[questions[currentQuestion].correct].classList.add("correct");
+    buttons[questions[currentQuestion].correct].classList.add("correct");
 
     }
 

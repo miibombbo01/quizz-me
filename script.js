@@ -54,8 +54,7 @@ const questions = [
 let currentQuestion = 0;
 let score = 0;
 
-const correctSound = new Audio("correct.mp3");
-const wrongSound = new Audio("wrong.mp3");
+const correctSound = new Audio("mixkit-correct-answer-tone-2870.wav");
 
 let timeLeft = 15;
 let timer;
@@ -111,13 +110,26 @@ function selectAnswer(button,index){
     if(index===questions[currentQuestion].correct){
 
     button.classList.add("correct");
-    correctSound.play();
-    score++;
+
+correctSound.currentTime = 0;
+correctSound.play();
+
+confetti({
+    particleCount: 80,
+    spread: 70,
+    origin: { y: 0.6 }
+});
+
+score++;
 
 }else{
 
     button.classList.add("wrong");
-    wrongSound.play();
+
+    // Getar HP
+    if(navigator.vibrate){
+        navigator.vibrate(300);
+    }
 
     buttons[questions[currentQuestion].correct].classList.add("correct");
 

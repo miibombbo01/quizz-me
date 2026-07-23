@@ -242,6 +242,43 @@ ${message}
 `;
     answersEl.innerHTML = "";
 
-    nextBtn.style.display = "none";
+questions.forEach((q, index) => {
+
+    const review = document.createElement("div");
+
+    review.style.marginTop = "20px";
+    review.style.padding = "15px";
+    review.style.borderRadius = "12px";
+    review.style.background = "#f8f8f8";
+
+    let userAnswer =
+        userAnswers[index] == -1
+        ? "⏰ Tidak Dijawab"
+        : q.answers[userAnswers[index]];
+
+    let correctAnswer = q.answers[q.correct];
+
+    if(userAnswers[index] == q.correct){
+
+        review.innerHTML = `
+        <h3>✅ Soal ${index+1}</h3>
+        <p><b>Jawabanmu:</b> ${userAnswer}</p>
+        `;
+
+    }else{
+
+        review.innerHTML = `
+        <h3>❌ Soal ${index+1}</h3>
+        <p><b>Jawabanmu:</b> ${userAnswer}</p>
+        <p style="color:green;"><b>Jawaban Benar:</b> ${correctAnswer}</p>
+        `;
+
+    }
+
+    answersEl.appendChild(review);
+
+});
+
+nextBtn.style.display = "none";
 
 }

@@ -53,6 +53,7 @@ const questions = [
 
 let currentQuestion = 0;
 let score = 0;
+let userAnswers = [];
 
 const correctSound = new Audio("mixkit-correct-answer-tone-2870.wav");
 
@@ -108,6 +109,8 @@ questionEl.classList.add("question-animate");
 function selectAnswer(button,index){
 
     clearInterval(timer);
+
+    userAnswers[currentQuestion] = index;
     
     const buttons=document.querySelectorAll(".answer-btn");
 
@@ -182,11 +185,13 @@ function startTimer(){
 
         if(timeLeft<=0){
 
-            clearInterval(timer);
+    clearInterval(timer);
 
-            nextQuestion();
+    userAnswers[currentQuestion] = -1;
 
-        }
+    nextQuestion();
+
+}
 
     },1000);
 
@@ -196,10 +201,47 @@ function showResult(){
 
     progressBar.style.width = "100%";
 
-    questionEl.innerHTML=`🎉 Skor kamu <br><h2>${score}/${questions.length}</h2>`;
+    let percent = Math.round((score / questions.length) * 100);
 
-    answersEl.innerHTML="";
+    let badge = "";
+let message = "";
 
-    nextBtn.style.display="none";
+if(percent == 100){
+
+    badge = "🥇 Budayawan HSS";
+    message = "Luar biasa! Kamu mengenal budaya HSS dengan sangat baik.";
+
+}else if(percent >= 80){
+
+    badge = "🥈 Penjelajah Budaya";
+    message = "Hebat! Sedikit lagi menjadi Budayawan HSS.";
+
+}else{
+
+    badge = "🥉 Masih Belajar";
+    message = "Terus semangat! Budaya HSS masih menunggumu untuk dijelajahi.";
+
+}
+
+    questionEl.innerHTML = `
+<h2>🎉 Petualangan Selesai!</h2>
+
+<h1 style="font-size:60px;margin:20px 0;">
+${percent}%
+</h1>
+
+<h3>${score} dari ${questions.length} jawaban benar</h3>
+
+<h2 style="margin-top:30px;color:#2ecc71;">
+${badge}
+</h2>
+
+<p style="margin-top:15px;font-size:18px;line-height:1.6;">
+${message}
+</p>
+`;
+    answersEl.innerHTML = "";
+
+    nextBtn.style.display = "none";
 
 }

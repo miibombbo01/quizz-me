@@ -82,7 +82,13 @@ function loadQuestion(){
 
 startTimer();
 
-    questionEl.textContent = q.question;
+    questionEl.classList.remove("question-animate");
+
+void questionEl.offsetWidth;
+
+questionEl.textContent = q.question;
+
+questionEl.classList.add("question-animate");
     answersEl.innerHTML = "";
 
     q.answers.forEach((answer,index)=>{

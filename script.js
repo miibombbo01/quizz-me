@@ -258,3 +258,43 @@ function showResult(){
     answersEl.innerHTML = "";
 
     questions.forEach((q,index)=>{
+        const review = document.createElement("div");
+
+review.className =
+userAnswers[index] === q.correct
+? "review-card correct"
+: "review-card wrong";
+
+const userAnswer =
+userAnswers[index] === -1
+? "⏰ Tidak Dijawab"
+: q.answers[userAnswers[index]];
+
+const correctAnswer = q.answers[q.correct];
+
+if(userAnswers[index] === q.correct){
+
+    review.innerHTML = `
+    <h3>✅ Soal ${index+1}</h3>
+    <p><b>Jawabanmu:</b> ${userAnswer}</p>
+    `;
+
+}else{
+
+    review.innerHTML = `
+    <h3>❌ Soal ${index+1}</h3>
+    <p><b>Jawabanmu:</b> ${userAnswer}</p>
+    <p style="margin-top:6px;color:var(--correct)">
+        <b>Jawaban Benar:</b> ${correctAnswer}
+    </p>
+    `;
+
+}
+
+answersEl.appendChild(review);
+
+});
+
+nextBtn.style.display = "none";
+
+}

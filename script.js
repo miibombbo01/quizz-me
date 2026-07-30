@@ -1,53 +1,53 @@
 const questions = [
 {
-    question: "Perjalananmu dimulai di sebuah galeri budaya HSS. Di antara berbagai motif sasirangan, kamu menemukan satu motif yang terinspirasi dari ikan yang sangat dekat dengan kehidupan masyarakat Banjar. Motif apakah yang kamu temukan?",
+    question: "Dalam perjalananmu ke sebuah rumah adat Banjar, pemandu menjelaskan bahwa nama rumah ini berasal dari bentuk atapnya yang menjulang tinggi. Rumah adat yang dimaksud adalah…",
     answers: [
-        "Kambang Raja",
-        "Gigi Haruan",
-        "Kulat Kurikit",
-        "Naga Balimbur"
-    ],
-    correct: 1
-},
-{
-    question: "Setelah menjelajahi budaya, kini kamu menuju kawasan Pegunungan Meratus. Di tempat ini, pengunjung dapat menyusuri sungai menggunakan rakit bambu sambil menikmati keindahan alam. Di manakah kamu berada?",
-    answers: [
-        "Kandangan",
-        "Daha Selatan",
-        "Loksado",
-        "Sungai Raya"
-    ],
-    correct: 2
-},
-{
-    question: "Dalam perjalananmu, kamu menemukan sebuah bangunan tradisional yang menjadi identitas masyarakat Banjar. Rumah ini dikenal dengan arsitekturnya yang khas. Rumah adat tersebut adalah...",
-    answers: [
-        "Rumah Gadang",
-        "Rumah Joglo",
+        "Rumah Balai Bini",
+        "Rumah Palimasan",
         "Rumah Bubungan Tinggi",
-        "Rumah Limas"
+        "Rumah Gajah Baliku"
     ],
     correct: 2
 },
 {
-    question: "Saat beristirahat di sebuah warung, kamu melihat masyarakat berkumpul sambil berbincang dan bertukar cerita. Tradisi ini dikenal dengan budaya...",
+    question: "Saat memasuki rumah tersebut, kamu mengetahui bahwa pada masa lalu tidak semua orang boleh memilikinya. Rumah Bubungan Tinggi dulunya merupakan tempat tinggal bagi…",
     answers: [
-        "Bapantun",
-        "Mawarung",
-        "Baayun",
-        "Batapung Tawar"
+        "Pedagang di pasar",
+        "Tokoh agama",
+        "Sultan atau kalangan bangsawan Banjar",
+        "Para nelayan"
     ],
-    correct: 1
+    correct: 2
 },
 {
-    question: "Selamat! Kamu hampir menyelesaikan petualangan budaya HSS. Apa tujuan utama melestarikan budaya daerah?",
+    question: "Ketika mengamati bentuk bangunannya, kamu melihat bagian atap yang sangat tinggi dan curam. Bentuk atap ini menjadi ciri khas Rumah Bubungan Tinggi karena…",
     answers: [
-        "Supaya cepat dilupakan",
-        "Sebagai identitas dan warisan generasi",
-        "Hanya untuk wisatawan",
-        "Agar terlihat modern"
+        "Memudahkan pemasangan hiasan",
+        "Sebagai tempat menyimpan hasil panen",
+        "Menjadi identitas utama arsitektur rumah adat Banjar",
+        "Digunakan sebagai menara pengawas"
     ],
-    correct: 1
+    correct: 2
+},
+{
+    question: "Di dalam rumah, pemandu menjelaskan bahwa setiap ruangan memiliki fungsi yang berbeda sesuai adat Banjar. Bagian rumah yang biasanya digunakan untuk menerima tamu disebut…",
+    answers: [
+        "Panampik Kacil",
+        "Palatar",
+        "Panampik Basar",
+        "Padapuran"
+    ],
+    correct: 2
+},
+{
+    question: "Menjelang akhir kunjungan, kamu mengetahui bahwa Rumah Bubungan Tinggi bukan sekadar tempat tinggal, tetapi juga melambangkan kedudukan pemiliknya di masyarakat. Filosofi tersebut menunjukkan bahwa rumah ini merupakan simbol…",
+    answers: [
+        "Kehidupan nelayan",
+        "Perdagangan antarpulau",
+        "Martabat, kehormatan, dan status sosial",
+        "Mata pencaharian bertani"
+    ],
+    correct: 2
 }
 ];
 
@@ -134,6 +134,155 @@ score++;
 }else{
 
     button.classList.add("wrong");
+
+    // Getar HP
+    if(navigator.vibrate){
+        navigator.vibrate(300);
+    }
+
+    buttons[questions[currentQuestion].correct].classList.add("correct");
+
+    }
+
+    setTimeout(() => {
+
+    nextQuestion();
+
+},1500);
+
+}
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+    if(currentQuestion<questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        showResult();
+
+    }
+
+}
+
+nextBtn.onclick = nextQuestion;
+
+function startTimer(){
+
+    clearInterval(timer);
+
+    timeLeft = 15;
+    timerEl.textContent = timeLeft;
+
+    timer = setInterval(()=>{
+
+        timeLeft--;
+
+        timerEl.textContent = timeLeft;
+
+        if(timeLeft<=0){
+
+    clearInterval(timer);
+
+    userAnswers[currentQuestion] = -1;
+
+    nextQuestion();
+
+}
+
+    },1000);
+
+}
+
+function showResult(){
+
+    progressBar.style.width = "100%";
+
+    let percent = Math.round((score / questions.length) * 100);
+
+    let badge = "";
+    let message = "";
+
+    if(percent == 100){
+        badge = "🥇 Budayawan HSS";
+        message = "Luar biasa! Kamu mengenal budaya HSS dengan sangat baik.";
+    }else if(percent >= 80){
+        badge = "🥈 Penjelajah Budaya";
+        message = "Hebat! Sedikit lagi menjadi Budayawan HSS.";
+    }else{
+        badge = "🥉 Masih Belajar";
+        message = "Terus semangat! Budaya HSS masih menunggumu untuk dijelajahi.";
+    }
+
+    questionEl.innerHTML = `
+    <div style="text-align: center; padding: 8px 0;">
+        <h2 style="font-family: var(--font-heading); font-size: 22px; color: var(--text-main);">🎉 Petualangan Selesai!</h2>
+
+        <div style="font-family: var(--font-heading); font-size: 56px; font-weight: 800; color: var(--primary-sage); margin: 12px 0; line-height: 1;">
+            ${percent}%
+        </div>
+
+        <p style="font-size: 15px; color: var(--text-muted); font-weight: 600;">
+            ${score} dari ${questions.length} jawaban benar
+        </p>
+
+        <div style="margin-top: 18px; display: inline-block; background: var(--sage-light); padding: 8px 18px; border-radius: 99px; color: var(--primary-sage); font-family: var(--font-heading); font-weight: 700; font-size: 17px;">
+            ${badge}
+        </div>
+
+        <p style="margin-top: 16px; font-size: 15px; line-height: 1.6; color: var(--text-main);">
+            ${message}
+        </p>
+    </div>
+    `;
+
+    answersEl.innerHTML = "";
+
+    questions.forEach((q, index) => {
+
+        const review = document.createElement("div");
+
+        review.style.marginTop = "12px";
+        review.style.padding = "16px";
+        review.style.borderRadius = "14px";
+        review.style.background = "#FFFFFF";
+        review.style.border = "1px solid var(--border-color)";
+        review.style.textAlign = "left";
+
+        let userAnswer =
+            userAnswers[index] == -1
+            ? "⏰ Tidak Dijawab"
+            : q.answers[userAnswers[index]];
+
+        let correctAnswer = q.answers[q.correct];
+
+        if(userAnswers[index] == q.correct){
+
+            review.innerHTML = `
+            <h3 style="font-size: 15px; color: var(--color-correct); font-weight: 700; margin-bottom: 6px;">✅ Soal ${index+1}</h3>
+            <p style="font-size: 14px; color: var(--text-main);"><b>Jawabanmu:</b> ${userAnswer}</p>
+            `;
+
+        }else{
+
+            review.innerHTML = `
+            <h3 style="font-size: 15px; color: var(--color-wrong); font-weight: 700; margin-bottom: 6px;">❌ Soal ${index+1}</h3>
+            <p style="font-size: 14px; color: var(--text-main); margin-bottom: 4px;"><b>Jawabanmu:</b> ${userAnswer}</p>
+            <p style="font-size: 14px; color: var(--color-correct);"><b>Jawaban Benar:</b> ${correctAnswer}</p>
+            `;
+
+        }
+
+        answersEl.appendChild(review);
+
+    });
+
+    nextBtn.style.display = "none";
+
+}
 
     // Getar HP
     if(navigator.vibrate){

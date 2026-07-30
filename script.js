@@ -284,6 +284,182 @@ function showResult(){
 
 }
 
+    clearInterval(timer);
+
+    userAnswers[currentQuestion] = index;
+    
+    const buttons=document.querySelectorAll(".answer-btn");
+
+    buttons.forEach(btn=>btn.disabled=true);
+
+    if(index===questions[currentQuestion].correct){
+
+    button.classList.add("correct");
+
+correctSound.currentTime = 0;
+correctSound.play();
+
+confetti({
+    particleCount: 80,
+    spread: 70,
+    origin: { y: 0.6 }
+});
+
+score++;
+
+}else{
+
+    button.classList.add("wrong");
+
+    // Getar HP
+    if(navigator.vibrate){
+        navigator.vibrate(300);
+    }
+
+    buttons[questions[currentQuestion].correct].classList.add("correct");
+
+    }
+
+    setTimeout(() => {
+
+    nextQuestion();
+
+},1500);
+
+}
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+    if(currentQuestion<questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        showResult();
+
+    }
+
+}
+
+nextBtn.onclick = nextQuestion;
+
+function startTimer(){
+
+    clearInterval(timer);
+
+    timeLeft = 15;
+    timerEl.textContent = timeLeft;
+
+    timer = setInterval(()=>{
+
+        timeLeft--;
+
+        timerEl.textContent = timeLeft;
+
+        if(timeLeft<=0){
+
+    clearInterval(timer);
+
+    userAnswers[currentQuestion] = -1;
+
+    nextQuestion();
+
+}
+
+    },1000);
+
+}
+
+function showResult(){
+
+    progressBar.style.width = "100%";
+
+    let percent = Math.round((score / questions.length) * 100);
+
+    let badge = "";
+    let message = "";
+
+    if(percent == 100){
+        badge = "🥇 Budayawan HSS";
+        message = "Luar biasa! Kamu mengenal budaya HSS dengan sangat baik.";
+    }else if(percent >= 80){
+        badge = "🥈 Penjelajah Budaya";
+        message = "Hebat! Sedikit lagi menjadi Budayawan HSS.";
+    }else{
+        badge = "🥉 Masih Belajar";
+        message = "Terus semangat! Budaya HSS masih menunggumu untuk dijelajahi.";
+    }
+
+    questionEl.innerHTML = `
+    <div style="text-align: center; padding: 8px 0;">
+        <h2 style="font-family: var(--font-heading); font-size: 22px; color: var(--text-main);">🎉 Petualangan Selesai!</h2>
+
+        <div style="font-family: var(--font-heading); font-size: 56px; font-weight: 800; color: var(--primary-sage); margin: 12px 0; line-height: 1;">
+            ${percent}%
+        </div>
+
+        <p style="font-size: 15px; color: var(--text-muted); font-weight: 600;">
+            ${score} dari ${questions.length} jawaban benar
+        </p>
+
+        <div style="margin-top: 18px; display: inline-block; background: var(--sage-light); padding: 8px 18px; border-radius: 99px; color: var(--primary-sage); font-family: var(--font-heading); font-weight: 700; font-size: 17px;">
+            ${badge}
+        </div>
+
+        <p style="margin-top: 16px; font-size: 15px; line-height: 1.6; color: var(--text-main);">
+            ${message}
+        </p>
+    </div>
+    `;
+
+    answersEl.innerHTML = "";
+
+    questions.forEach((q, index) => {
+
+        const review = document.createElement("div");
+
+        review.style.marginTop = "12px";
+        review.style.padding = "16px";
+        review.style.borderRadius = "14px";
+        review.style.background = "#FFFFFF";
+        review.style.border = "1px solid var(--border-color)";
+        review.style.textAlign = "left";
+
+        let userAnswer =
+            userAnswers[index] == -1
+            ? "⏰ Tidak Dijawab"
+            : q.answers[userAnswers[index]];
+
+        let correctAnswer = q.answers[q.correct];
+
+        if(userAnswers[index] == q.correct){
+
+            review.innerHTML = `
+            <h3 style="font-size: 15px; color: var(--color-correct); font-weight: 700; margin-bottom: 6px;">✅ Soal ${index+1}</h3>
+            <p style="font-size: 14px; color: var(--text-main);"><b>Jawabanmu:</b> ${userAnswer}</p>
+            `;
+
+        }else{
+
+            review.innerHTML = `
+            <h3 style="font-size: 15px; color: var(--color-wrong); font-weight: 700; margin-bottom: 6px;">❌ Soal ${index+1}</h3>
+            <p style="font-size: 14px; color: var(--text-main); margin-bottom: 4px;"><b>Jawabanmu:</b> ${userAnswer}</p>
+            <p style="font-size: 14px; color: var(--color-correct);"><b>Jawaban Benar:</b> ${correctAnswer}</p>
+            `;
+
+        }
+
+        answersEl.appendChild(review);
+
+    });
+
+    nextBtn.style.display = "none";
+
+}
+
     // Getar HP
     if(navigator.vibrate){
         navigator.vibrate(300);

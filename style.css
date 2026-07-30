@@ -1,18 +1,242 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+/* ==========================================
+   DESIGN TOKENS (SAGE & KREM CULTURES)
+   ========================================== */
+:root {
+    --bg-main: #F2F5F0;           /* Krem lembut dengan sentuhan sage */
+    --card-bg: #FFFFFF;           /* Putih bersih */
+    --primary-sage: #4E6E58;      /* Hijau Sage Utama */
+    --primary-sage-hover: #3E5846;/* Sage Gelap saat Hover */
+    --sage-light: #E8EFEA;        /* Sage sangat muda untuk aksen */
+    
+    --text-main: #233129;         /* Hijau-Abu sangat gelap (sangat nyaman di mata) */
+    --text-muted: #6B7C72;        /* Sub-teks */
+    --border-color: #E2E8E4;      /* Garis halus */
+    
+    --color-correct: #2E7D32;     /* Hijau Benar */
+    --color-wrong: #D32F2F;       /* Merah Salah */
+
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+
+    --shadow-card: 0 16px 40px rgba(35, 49, 41, 0.08);
+    --shadow-btn: 0 4px 12px rgba(78, 110, 88, 0.15);
 }
 
-body{
-    background:#f5f7fb;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    padding:20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-body);
+    -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru khas mobile browser */
 }
+
+body {
+    background-color: var(--bg-main);
+    /* Motif Sasirangan geometris samar & minimalis */
+    background-image: 
+        radial-gradient(var(--primary-sage) 0.8px, transparent 0.8px), 
+        radial-gradient(var(--primary-sage) 0.8px, var(--bg-main) 0.8px);
+    background-size: 28px 28px;
+    background-position: 0 0, 14px 14px;
+    background-blend-mode: soft-light;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 16px;
+    color: var(--text-main);
+}
+
+/* ==========================================
+   CARD CONTAINER
+   ========================================== */
+.container {
+    width: 100%;
+    max-width: 620px;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 32px 28px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+/* Header Title */
+h1 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-align: center;
+    color: var(--primary-sage);
+    font-size: 24px;
+    margin-bottom: 20px;
+    letter-spacing: -0.3px;
+}
+
+/* ==========================================
+   PROGRESS BAR & INFO TOP
+   ========================================== */
+.progress {
+    width: 100%;
+    height: 10px;
+    background: var(--sage-light);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--primary-sage);
+    border-radius: 99px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.info span {
+    background: var(--sage-light);
+    padding: 6px 14px;
+    border-radius: 99px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ==========================================
+   QUIZ CONTENT & BUTTONS
+   ========================================== */
+#question {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text-main);
+    margin-bottom: 24px;
+}
+
+#answers {
+    display: grid;
+    gap: 12px;
+}
+
+.answer-btn {
+    width: 100%;
+    border: 1.5px solid var(--border-color);
+    padding: 16px 20px;
+    border-radius: 16px;
+    cursor: pointer;
+    background: #FFFFFF;
+    color: var(--text-main);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    line-height: 1.4;
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    animation: fadeUp 0.35s ease forwards;
+}
+
+/* Hover & Active State (Tactile feel) */
+.answer-btn:hover:not(:disabled) {
+    background: var(--sage-light);
+    border-color: var(--primary-sage);
+    transform: translateY(-2px);
+}
+
+.answer-btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.99);
+}
+
+/* State Jawaban Benar & Salah */
+.answer-btn.correct {
+    background: var(--color-correct) !important;
+    border-color: var(--color-correct) !important;
+    color: white !important;
+    box-shadow: 0 6px 16px rgba(46, 125, 50, 0.25);
+}
+
+.answer-btn.wrong {
+    background: var(--color-wrong) !important;
+    border-color: var(--color-wrong) !important;
+    color: white !important;
+    box-shadow: 0 6px 16px rgba(211, 47, 47, 0.25);
+}
+
+.answer-btn:disabled {
+    cursor: default;
+}
+
+/* ==========================================
+   RESULT SCREEN REVIEW CARDS
+   ========================================== */
+#answers div {
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
+.question-animate {
+    animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   OPTIMASI MOBILE (RESPONSIVE)
+   ========================================== */
+@media (max-width: 480px) {
+    .container {
+        padding: 24px 18px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    #question {
+        font-size: 17px;
+    }
+
+    .answer-btn {
+        padding: 14px 16px;
+        font-size: 14px;
+        border-radius: 14px;
+    }
+}
+
 
 .container{
     width:100%;

@@ -1,7 +1,9 @@
 /* ==========================================
    DESIGN TOKENS
 ========================================== */
+
 :root{
+
     --bg-main:#F3F5F2;
     --card-bg:#FFFFFF;
 
@@ -23,19 +25,21 @@
 
     --font-heading:'Outfit',sans-serif;
     --font-body:'Plus Jakarta Sans',sans-serif;
+
 }
 
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
     -webkit-tap-highlight-color:transparent;
+
 }
 
 body{
 
     font-family:var(--font-body);
-
     background:var(--bg-main);
 
     background-image:
@@ -63,7 +67,202 @@ body{
 
 .container{
 
-   /* ==========================================
+    width:100%;
+    max-width:680px;
+
+    background:var(--card-bg);
+
+    border-radius:24px;
+
+    padding:30px 24px;
+
+    box-shadow:var(--shadow);
+
+}
+
+/* ==========================================
+   TITLE
+========================================== */
+
+h1{
+
+    font-family:var(--font-heading);
+
+    color:var(--text);
+
+    text-align:center;
+
+    font-size:34px;
+
+    margin-bottom:22px;
+
+}
+
+/* ==========================================
+   PROGRESS BAR
+========================================== */
+
+.progress{
+
+    width:100%;
+
+    height:12px;
+
+    background:#DFE8E2;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    margin-bottom:18px;
+
+}
+
+.progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        #76A081
+    );
+
+    transition:.35s ease;
+
+}
+
+/* ==========================================
+   INFO
+========================================== */
+
+.info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:24px;
+
+    color:var(--text-light);
+
+    font-weight:600;
+
+    font-size:15px;
+
+}
+
+/* ==========================================
+   QUIZ BOX
+========================================== */
+
+.quiz-box{
+
+    width:100%;
+
+}
+
+#question{
+
+    font-family:var(--font-heading);
+
+    font-size:22px;
+
+    line-height:1.6;
+
+    margin-bottom:22px;
+
+    color:var(--text);
+
+}
+
+#answers{
+
+    display:grid;
+
+    gap:14px;
+
+}
+
+/* ==========================================
+   ANSWER BUTTON
+========================================== */
+
+.answer-btn{
+
+    width:100%;
+
+    border:2px solid var(--border);
+
+    background:#FFFFFF;
+
+    color:var(--text);
+
+    padding:16px 18px;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.25s ease;
+
+    animation:fadeUp .35s ease;
+
+}
+
+.answer-btn:hover:not(:disabled){
+
+    transform:translateY(-2px);
+
+    border-color:var(--primary);
+
+    background:var(--primary-light);
+
+}
+
+.answer-btn:active:not(:disabled){
+
+    transform:scale(.98);
+
+}
+
+.answer-btn:disabled{
+
+    cursor:default;
+
+}
+
+.answer-btn.correct{
+
+    background:var(--correct)!important;
+
+    border-color:var(--correct)!important;
+
+    color:white!important;
+
+}
+
+.answer-btn.wrong{
+
+    background:var(--wrong)!important;
+
+    border-color:var(--wrong)!important;
+
+    color:white!important;
+
+}
+
+/* ==========================================
    NEXT BUTTON
 ========================================== */
 
@@ -75,17 +274,13 @@ body{
 
     border:none;
 
-    background:linear-gradient(
-        90deg,
-        var(--primary),
-        #62866E
-    );
+    border-radius:16px;
+
+    background:var(--primary);
 
     color:white;
 
     padding:15px;
-
-    border-radius:16px;
 
     font-size:16px;
 
@@ -93,109 +288,31 @@ body{
 
     cursor:pointer;
 
-    transition:.2s ease;
-
-    box-shadow:0 8px 20px rgba(78,110,88,.18);
+    transition:.25s ease;
 
 }
 
 #next:hover{
 
-    transform:translateY(-2px);
-
     background:var(--primary-dark);
 
 }
 
-#next:active{
-
-    transform:scale(.98);
-
-}
-
 /* ==========================================
-   RESULT REVIEW CARD
+   RESULT
 ========================================== */
-
-.review-card{
-
-    margin-top:14px;
-
-    padding:16px;
-
-    border-radius:18px;
-
-    background:#fff;
-
-    border:1px solid var(--border);
-
-    box-shadow:0 6px 18px rgba(0,0,0,.04);
-
-    animation:fadeUp .35s ease both;
-
-}
-
-.review-card h3{
-
-    margin-bottom:8px;
-
-    font-size:16px;
-
-}
-
-.review-card p{
-
-    line-height:1.6;
-
-    font-size:14px;
-
-    color:var(--text);
-
-}
-
-.review-card.correct h3{
-
-    color:var(--correct);
-
-}
-
-.review-card.wrong h3{
-
-    color:var(--wrong);
-
-}
-
-/* ==========================================
-   SCORE PAGE
-========================================== */
-
-.result-title{
-
-    font-family:var(--font-heading);
-
-    font-size:26px;
-
-    text-align:center;
-
-    margin-bottom:12px;
-
-}
 
 .result-score{
 
     font-family:var(--font-heading);
 
-    font-size:64px;
-
-    font-weight:800;
+    font-size:62px;
 
     color:var(--primary);
 
-    text-align:center;
+    font-weight:800;
 
-    line-height:1;
-
-    margin:18px 0;
+    margin:16px 0;
 
 }
 
@@ -205,13 +322,13 @@ body{
 
     margin-top:18px;
 
-    padding:9px 18px;
-
-    border-radius:999px;
+    padding:10px 20px;
 
     background:var(--primary-light);
 
     color:var(--primary);
+
+    border-radius:999px;
 
     font-weight:700;
 
@@ -219,144 +336,8 @@ body{
 
 .result-message{
 
-    margin-top:16px;
-
-    text-align:center;
+    margin-top:18px;
 
     line-height:1.7;
-
-    color:var(--text-light);
-
-}
-
-/* ==========================================
-   ANIMATION
-========================================== */
-
-.question-animate{
-
-    animation:slideIn .35s ease;
-
-}
-
-@keyframes slideIn{
-
-    from{
-
-        opacity:0;
-
-        transform:translateX(28px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateX(0);
-
-    }
-
-}
-
-@keyframes fadeUp{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(18px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-/* ==========================================
-   SCROLLBAR
-========================================== */
-
-::-webkit-scrollbar{
-
-    width:8px;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:#B6C6BC;
-
-    border-radius:999px;
-
-}
-
-::-webkit-scrollbar-track{
-
-    background:transparent;
-
-}
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width:600px){
-
-    body{
-
-        padding:14px;
-
-    }
-
-    .container{
-
-        padding:22px 18px;
-
-        border-radius:18px;
-
-    }
-
-    h1{
-
-        font-size:22px;
-
-    }
-
-    #question{
-
-        font-size:18px;
-
-    }
-
-    .answer-btn{
-
-        font-size:14px;
-
-        padding:14px 15px;
-
-        border-radius:14px;
-
-    }
-
-    #next{
-
-        font-size:15px;
-
-        padding:14px;
-
-    }
-
-    .result-score{
-
-        font-size:52px;
-
-    }
 
    }

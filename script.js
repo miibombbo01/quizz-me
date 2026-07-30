@@ -55,10 +55,10 @@ let currentQuestion = 0;
 let score = 0;
 let userAnswers = [];
 
-const correctSound = new Audio("mixkit-correct-answer-tone-2870.wav");
-
 let timeLeft = 15;
-let timer;
+let timer = null;
+
+const correctSound = new Audio("mixkit-correct-answer-tone-2870.wav");
 
 const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
@@ -72,6 +72,8 @@ loadQuestion();
 
 function loadQuestion(){
 
+    clearInterval(timer);
+
     nextBtn.style.display = "none";
 
     const q = questions[currentQuestion];
@@ -79,30 +81,31 @@ function loadQuestion(){
     questionNumber.textContent = currentQuestion + 1;
 
     progressBar.style.width =
-((currentQuestion) / questions.length) * 100 + "%";
-
-startTimer();
+        (currentQuestion / questions.length) * 100 + "%";
 
     questionEl.classList.remove("question-animate");
+    void questionEl.offsetWidth;
 
-void questionEl.offsetWidth;
+    questionEl.textContent = q.question;
+    questionEl.classList.add("question-animate");
 
-questionEl.textContent = q.question;
-
-questionEl.classList.add("question-animate");
     answersEl.innerHTML = "";
 
     q.answers.forEach((answer,index)=>{
 
         const btn = document.createElement("button");
-        btn.textContent = answer;
+
         btn.className = "answer-btn";
+
+        btn.textContent = answer;
 
         btn.onclick = ()=>selectAnswer(btn,index);
 
         answersEl.appendChild(btn);
 
     });
+
+    startTimer();
 
 }
 
@@ -111,44 +114,41 @@ function selectAnswer(button,index){
     clearInterval(timer);
 
     userAnswers[currentQuestion] = index;
-    
-    const buttons=document.querySelectorAll(".answer-btn");
+
+    const buttons = document.querySelectorAll(".answer-btn");
 
     buttons.forEach(btn=>btn.disabled=true);
 
-    if(index===questions[currentQuestion].correct){
+    if(index === questions[currentQuestion].correct){
 
-    button.classList.add("correct");
+        score++;
 
-correctSound.currentTime = 0;
-correctSound.play();
+        button.classList.add("correct");
 
-confetti({
-    particleCount: 80,
-    spread: 70,
-    origin: { y: 0.6 }
-});
+        correctSound.currentTime = 0;
+        correctSound.play();
 
-score++;
+        confetti({
+            particleCount:80,
+            spread:70,
+            origin:{y:0.6}
+        });
 
-}else{
+    }else{
 
-    button.classList.add("wrong");
+        button.classList.add("wrong");
 
-    // Getar HP
-    if(navigator.vibrate){
-        navigator.vibrate(300);
+        if(navigator.vibrate){
+            navigator.vibrate(300);
+        }
+
+        buttons[
+            questions[currentQuestion].correct
+        ].classList.add("correct");
+
     }
 
-    buttons[questions[currentQuestion].correct].classList.add("correct");
-
-    }
-
-    setTimeout(() => {
-
-    nextQuestion();
-
-},1500);
+    setTimeout(nextQuestion,1500);
 
 }
 
@@ -156,7 +156,7 @@ function nextQuestion(){
 
     currentQuestion++;
 
-    if(currentQuestion<questions.length){
+    if(currentQuestion < questions.length){
 
         loadQuestion();
 
@@ -168,13 +168,10 @@ function nextQuestion(){
 
 }
 
-nextBtn.onclick = nextQuestion;
-
 function startTimer(){
 
-    clearInterval(timer);
-
     timeLeft = 15;
+
     timerEl.textContent = timeLeft;
 
     timer = setInterval(()=>{
@@ -183,427 +180,81 @@ function startTimer(){
 
         timerEl.textContent = timeLeft;
 
-        if(timeLeft<=0){
+        if(timeLeft <= 0){
 
-    clearInterval(timer);
+            clearInterval(timer);
 
-    userAnswers[currentQuestion] = -1;
+            userAnswers[currentQuestion] = -1;
 
-    nextQuestion();
+            nextQuestion();
 
-}
+        }
 
     },1000);
 
 }
 
+nextBtn.onclick = nextQuestion;
+
 function showResult(){
+
+    clearInterval(timer);
 
     progressBar.style.width = "100%";
 
-    let percent = Math.round((score / questions.length) * 100);
+    const percent = Math.round(
+        (score / questions.length) * 100
+    );
 
     let badge = "";
     let message = "";
 
-    if(percent == 100){
+    if(percent === 100){
+
         badge = "🥇 Budayawan HSS";
-        message = "Luar biasa! Kamu mengenal budaya HSS dengan sangat baik.";
+        message =
+        "Luar biasa! Kamu mengenal budaya HSS dengan sangat baik.";
+
     }else if(percent >= 80){
+
         badge = "🥈 Penjelajah Budaya";
-        message = "Hebat! Sedikit lagi menjadi Budayawan HSS.";
+        message =
+        "Hebat! Sedikit lagi menjadi Budayawan HSS.";
+
     }else{
+
         badge = "🥉 Masih Belajar";
-        message = "Terus semangat! Budaya HSS masih menunggumu untuk dijelajahi.";
+        message =
+        "Terus semangat! Budaya HSS masih menunggumu untuk dijelajahi.";
+
     }
 
     questionEl.innerHTML = `
-    <div style="text-align: center; padding: 8px 0;">
-        <h2 style="font-family: var(--font-heading); font-size: 22px; color: var(--text-main);">🎉 Petualangan Selesai!</h2>
+    <div style="text-align:center">
 
-        <div style="font-family: var(--font-heading); font-size: 56px; font-weight: 800; color: var(--primary-sage); margin: 12px 0; line-height: 1;">
+        <h2 class="result-title">
+            🎉 Petualangan Selesai!
+        </h2>
+
+        <div class="result-score">
             ${percent}%
         </div>
 
-        <p style="font-size: 15px; color: var(--text-muted); font-weight: 600;">
+        <p style="font-weight:600">
             ${score} dari ${questions.length} jawaban benar
         </p>
 
-        <div style="margin-top: 18px; display: inline-block; background: var(--sage-light); padding: 8px 18px; border-radius: 99px; color: var(--primary-sage); font-family: var(--font-heading); font-weight: 700; font-size: 17px;">
+        <div class="result-badge">
             ${badge}
         </div>
 
-        <p style="margin-top: 16px; font-size: 15px; line-height: 1.6; color: var(--text-main);">
+        <p class="result-message">
             ${message}
         </p>
+
     </div>
     `;
 
     answersEl.innerHTML = "";
 
-    questions.forEach((q, index) => {
-
-        const review = document.createElement("div");
-
-        review.style.marginTop = "12px";
-        review.style.padding = "16px";
-        review.style.borderRadius = "14px";
-        review.style.background = "#FFFFFF";
-        review.style.border = "1px solid var(--border-color)";
-        review.style.textAlign = "left";
-
-        let userAnswer =
-            userAnswers[index] == -1
-            ? "⏰ Tidak Dijawab"
-            : q.answers[userAnswers[index]];
-
-        let correctAnswer = q.answers[q.correct];
-
-        if(userAnswers[index] == q.correct){
-
-            review.innerHTML = `
-            <h3 style="font-size: 15px; color: var(--color-correct); font-weight: 700; margin-bottom: 6px;">✅ Soal ${index+1}</h3>
-            <p style="font-size: 14px; color: var(--text-main);"><b>Jawabanmu:</b> ${userAnswer}</p>
-            `;
-
-        }else{
-
-            review.innerHTML = `
-            <h3 style="font-size: 15px; color: var(--color-wrong); font-weight: 700; margin-bottom: 6px;">❌ Soal ${index+1}</h3>
-            <p style="font-size: 14px; color: var(--text-main); margin-bottom: 4px;"><b>Jawabanmu:</b> ${userAnswer}</p>
-            <p style="font-size: 14px; color: var(--color-correct);"><b>Jawaban Benar:</b> ${correctAnswer}</p>
-            `;
-
-        }
-
-        answersEl.appendChild(review);
-
-    });
-
-    nextBtn.style.display = "none";
-
-}
-
-    clearInterval(timer);
-
-    userAnswers[currentQuestion] = index;
-    
-    const buttons=document.querySelectorAll(".answer-btn");
-
-    buttons.forEach(btn=>btn.disabled=true);
-
-    if(index===questions[currentQuestion].correct){
-
-    button.classList.add("correct");
-
-correctSound.currentTime = 0;
-correctSound.play();
-
-confetti({
-    particleCount: 80,
-    spread: 70,
-    origin: { y: 0.6 }
-});
-
-score++;
-
-}else{
-
-    button.classList.add("wrong");
-
-    // Getar HP
-    if(navigator.vibrate){
-        navigator.vibrate(300);
-    }
-
-    buttons[questions[currentQuestion].correct].classList.add("correct");
-
-    }
-
-    setTimeout(() => {
-
-    nextQuestion();
-
-},1500);
-
-}
-
-function nextQuestion(){
-
-    currentQuestion++;
-
-    if(currentQuestion<questions.length){
-
-        loadQuestion();
-
-    }else{
-
-        showResult();
-
-    }
-
-}
-
-nextBtn.onclick = nextQuestion;
-
-function startTimer(){
-
-    clearInterval(timer);
-
-    timeLeft = 15;
-    timerEl.textContent = timeLeft;
-
-    timer = setInterval(()=>{
-
-        timeLeft--;
-
-        timerEl.textContent = timeLeft;
-
-        if(timeLeft<=0){
-
-    clearInterval(timer);
-
-    userAnswers[currentQuestion] = -1;
-
-    nextQuestion();
-
-}
-
-    },1000);
-
-}
-
-function showResult(){
-
-    progressBar.style.width = "100%";
-
-    let percent = Math.round((score / questions.length) * 100);
-
-    let badge = "";
-    let message = "";
-
-    if(percent == 100){
-        badge = "🥇 Budayawan HSS";
-        message = "Luar biasa! Kamu mengenal budaya HSS dengan sangat baik.";
-    }else if(percent >= 80){
-        badge = "🥈 Penjelajah Budaya";
-        message = "Hebat! Sedikit lagi menjadi Budayawan HSS.";
-    }else{
-        badge = "🥉 Masih Belajar";
-        message = "Terus semangat! Budaya HSS masih menunggumu untuk dijelajahi.";
-    }
-
-    questionEl.innerHTML = `
-    <div style="text-align: center; padding: 8px 0;">
-        <h2 style="font-family: var(--font-heading); font-size: 22px; color: var(--text-main);">🎉 Petualangan Selesai!</h2>
-
-        <div style="font-family: var(--font-heading); font-size: 56px; font-weight: 800; color: var(--primary-sage); margin: 12px 0; line-height: 1;">
-            ${percent}%
-        </div>
-
-        <p style="font-size: 15px; color: var(--text-muted); font-weight: 600;">
-            ${score} dari ${questions.length} jawaban benar
-        </p>
-
-        <div style="margin-top: 18px; display: inline-block; background: var(--sage-light); padding: 8px 18px; border-radius: 99px; color: var(--primary-sage); font-family: var(--font-heading); font-weight: 700; font-size: 17px;">
-            ${badge}
-        </div>
-
-        <p style="margin-top: 16px; font-size: 15px; line-height: 1.6; color: var(--text-main);">
-            ${message}
-        </p>
-    </div>
-    `;
-
-    answersEl.innerHTML = "";
-
-    questions.forEach((q, index) => {
-
-        const review = document.createElement("div");
-
-        review.style.marginTop = "12px";
-        review.style.padding = "16px";
-        review.style.borderRadius = "14px";
-        review.style.background = "#FFFFFF";
-        review.style.border = "1px solid var(--border-color)";
-        review.style.textAlign = "left";
-
-        let userAnswer =
-            userAnswers[index] == -1
-            ? "⏰ Tidak Dijawab"
-            : q.answers[userAnswers[index]];
-
-        let correctAnswer = q.answers[q.correct];
-
-        if(userAnswers[index] == q.correct){
-
-            review.innerHTML = `
-            <h3 style="font-size: 15px; color: var(--color-correct); font-weight: 700; margin-bottom: 6px;">✅ Soal ${index+1}</h3>
-            <p style="font-size: 14px; color: var(--text-main);"><b>Jawabanmu:</b> ${userAnswer}</p>
-            `;
-
-        }else{
-
-            review.innerHTML = `
-            <h3 style="font-size: 15px; color: var(--color-wrong); font-weight: 700; margin-bottom: 6px;">❌ Soal ${index+1}</h3>
-            <p style="font-size: 14px; color: var(--text-main); margin-bottom: 4px;"><b>Jawabanmu:</b> ${userAnswer}</p>
-            <p style="font-size: 14px; color: var(--color-correct);"><b>Jawaban Benar:</b> ${correctAnswer}</p>
-            `;
-
-        }
-
-        answersEl.appendChild(review);
-
-    });
-
-    nextBtn.style.display = "none";
-
-}
-
-    // Getar HP
-    if(navigator.vibrate){
-        navigator.vibrate(300);
-    }
-
-    buttons[questions[currentQuestion].correct].classList.add("correct");
-
-    }
-
-    setTimeout(() => {
-
-    nextQuestion();
-
-},1500);
-
-}
-
-function nextQuestion(){
-
-    currentQuestion++;
-
-    if(currentQuestion<questions.length){
-
-        loadQuestion();
-
-    }else{
-
-        showResult();
-
-    }
-
-}
-
-nextBtn.onclick = nextQuestion;
-
-function startTimer(){
-
-    clearInterval(timer);
-
-    timeLeft = 15;
-    timerEl.textContent = timeLeft;
-
-    timer = setInterval(()=>{
-
-        timeLeft--;
-
-        timerEl.textContent = timeLeft;
-
-        if(timeLeft<=0){
-
-    clearInterval(timer);
-
-    userAnswers[currentQuestion] = -1;
-
-    nextQuestion();
-
-}
-
-    },1000);
-
-}
-
-function showResult(){
-
-    progressBar.style.width = "100%";
-
-    let percent = Math.round((score / questions.length) * 100);
-
-    let badge = "";
-let message = "";
-
-if(percent == 100){
-
-    badge = "🥇 Budayawan HSS";
-    message = "Luar biasa! Kamu mengenal budaya HSS dengan sangat baik.";
-
-}else if(percent >= 80){
-
-    badge = "🥈 Penjelajah Budaya";
-    message = "Hebat! Sedikit lagi menjadi Budayawan HSS.";
-
-}else{
-
-    badge = "🥉 Masih Belajar";
-    message = "Terus semangat! Budaya HSS masih menunggumu untuk dijelajahi.";
-
-}
-
-    questionEl.innerHTML = `
-<h2>🎉 Petualangan Selesai!</h2>
-
-<h1 style="font-size:60px;margin:20px 0;">
-${percent}%
-</h1>
-
-<h3>${score} dari ${questions.length} jawaban benar</h3>
-
-<h2 style="margin-top:30px;color:#2ecc71;">
-${badge}
-</h2>
-
-<p style="margin-top:15px;font-size:18px;line-height:1.6;">
-${message}
-</p>
-`;
-    answersEl.innerHTML = "";
-
-questions.forEach((q, index) => {
-
-    const review = document.createElement("div");
-
-    review.style.marginTop = "20px";
-    review.style.padding = "15px";
-    review.style.borderRadius = "12px";
-    review.style.background = "#f8f8f8";
-
-    let userAnswer =
-        userAnswers[index] == -1
-        ? "⏰ Tidak Dijawab"
-        : q.answers[userAnswers[index]];
-
-    let correctAnswer = q.answers[q.correct];
-
-    if(userAnswers[index] == q.correct){
-
-        review.innerHTML = `
-        <h3>✅ Soal ${index+1}</h3>
-        <p><b>Jawabanmu:</b> ${userAnswer}</p>
-        `;
-
-    }else{
-
-        review.innerHTML = `
-        <h3>❌ Soal ${index+1}</h3>
-        <p><b>Jawabanmu:</b> ${userAnswer}</p>
-        <p style="color:green;"><b>Jawaban Benar:</b> ${correctAnswer}</p>
-        `;
-
-    }
-
-    answersEl.appendChild(review);
-
-});
-
-nextBtn.style.display = "none";
-
-}
+    questions.forEach((q,index)=>{

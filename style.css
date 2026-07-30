@@ -341,3 +341,209 @@ h1{
     line-height:1.7;
 
    }
+
+/* ==========================================
+   REVIEW CARD
+========================================== */
+
+.review-card{
+
+    margin-top:14px;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    background:#FFFFFF;
+
+    border:1px solid var(--border);
+
+    box-shadow:0 2px 8px rgba(0,0,0,.03);
+
+}
+
+.review-card h3{
+
+    margin-bottom:8px;
+
+    font-size:16px;
+
+}
+
+.review-card.correct{
+
+    border-left:6px solid var(--correct);
+
+}
+
+.review-card.wrong{
+
+    border-left:6px solid var(--wrong);
+
+}
+
+.review-card p{
+
+    line-height:1.6;
+
+    font-size:14px;
+
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+.question-animate{
+
+    animation:slideIn .35s ease;
+
+}
+
+@keyframes slideIn{
+
+    from{
+
+        opacity:0;
+        transform:translateX(28px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateX(0);
+
+    }
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+        transform:translateY(16px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:600px){
+
+    .container{
+
+        padding:22px 18px;
+
+        border-radius:18px;
+
+    }
+
+    h1{
+
+        font-size:28px;
+
+    }
+
+    #question{
+
+        font-size:18px;
+
+        line-height:1.5;
+
+    }
+
+    .answer-btn{
+
+        padding:14px;
+
+        font-size:14px;
+
+    }
+
+    .info{
+
+        font-size:13px;
+
+    }
+
+    .result-score{
+
+        font-size:50px;
+
+    }
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:rgba(78,110,88,.35);
+
+    border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:rgba(78,110,88,.6);
+
+}
+
+/* ==========================================
+   SELECTION
+========================================== */
+
+::selection{
+
+    background:rgba(78,110,88,.18);
+
+}
+
+/* ==========================================
+   SMALL POLISH
+========================================== */
+
+b{
+
+    color:var(--text);
+
+}
+
+p{
+
+    color:var(--text-light);
+
+}
+
+button{
+
+    font-family:inherit;
+
+}
+
+h2,h3{
+
+    color:var(--text);
+
+}

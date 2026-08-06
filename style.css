@@ -547,3 +547,60 @@ h2,h3{
     color:var(--text);
 
 }
+
+/* ==========================================
+   FORM PEMBUKA (WELCOME SCREEN)
+========================================== */
+
+.welcome-box {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.welcome-desc {
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    font-size: 15px;
+    font-family: var(--font-body);
+    outline: none;
+    transition: 0.25s ease;
+    background: #FAFAFA;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+    background: #FFFFFF;
+}
+
+.input-group input::placeholder {
+    color: #A0AEC0;
+}
+
+#startBtn {
+    width: 100%;
+    border: none;
+    border-radius: 16px;
+    background: var(--primary);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+#startBtn:hover {
+    background: var(--primary-dark);
+}

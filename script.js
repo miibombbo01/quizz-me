@@ -1,5 +1,5 @@
 // URL Apps Script kamu sudah terpasang di bawah ini
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwv1MT5kpjCOFmif_3G2XgHfPdhvPYMGjn_l3h0qCPsZdScKVW2GKcnWn2QJU2sufvs1A/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybbLhbLpsCuMjuBniRh7jaLwaQU9J3YEMNzKjDS0JhwgZRe1P4-pPh8rFezZThPbd_nA/exec";
 
 const questions = [
 {

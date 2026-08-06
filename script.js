@@ -171,7 +171,7 @@ function nextQuestion(){
 }
 
 function startTimer(){
-    timeLeft = 15;
+    timeLeft = 30;
     timerEl.textContent = timeLeft;
 
     timer = setInterval(()=>{

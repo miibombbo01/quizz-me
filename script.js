@@ -71,7 +71,7 @@ let totalDurationInSeconds = 0;
 const correctSound = new Audio("mixkit-correct-answer-tone-2870.wav");
 
 const welcomeScreen = document.getElementById("welcomeScreen");
-const welcomeForm = document.getElementById("welcomeForm"); // Ditambahkan untuk form pembuka
+const welcomeForm = document.getElementById("startForm") || document.getElementById("welcomeForm");
 const quizScreen = document.getElementById("quizScreen");
 const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");

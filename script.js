@@ -58,7 +58,7 @@ let currentQuestion = 0;
 let score = 0;
 let userAnswers = [];
 
-let timeLeft = 15;
+let timeLeft = 30;
 let timer = null;
 
 let userData = {
@@ -71,6 +71,7 @@ let totalDurationInSeconds = 0;
 const correctSound = new Audio("mixkit-correct-answer-tone-2870.wav");
 
 const welcomeScreen = document.getElementById("welcomeScreen");
+const welcomeForm = document.getElementById("welcomeForm"); // Ditambahkan untuk form pembuka
 const quizScreen = document.getElementById("quizScreen");
 const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
@@ -80,8 +81,13 @@ const timerEl = document.getElementById("timer");
 const progressBar = document.getElementById("progressBar");
 const questionNumber = document.getElementById("questionNumber");
 
+// Event Listener untuk Form Pembuka
+if (welcomeForm) {
+    welcomeForm.addEventListener("submit", startQuiz);
+}
+
 function startQuiz(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     
     userData.nama = document.getElementById("userName").value.trim();
     userData.alamat = document.getElementById("userAddress").value.trim();
@@ -136,7 +142,7 @@ function selectAnswer(button, index){
         button.classList.add("correct");
 
         correctSound.currentTime = 0;
-        correctSound.play();
+        correctSound.play().catch(()=>{}); // Catch pencegahan jika browser memblokir audio otomatis
 
         confetti({
             particleCount:80,

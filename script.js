@@ -3,54 +3,54 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybbLhbLpsCuMjuBniRh
 
 const questions = [
 {
-    question: "Dalam perjalananmu ke sebuah rumah adat Banjar, pemandu menjelaskan bahwa nama rumah ini berasal dari bentuk atapnya yang menjulang tinggi. Rumah adat yang dimaksud adalah…",
+    question: "Kamu mendengar sebuah cerita tentang kerajinan tanah liat yang sudah ada sejak masa Kerajaan Nagara Daha. Kerajinan ini kemudian terus diwariskan oleh masyarakat Nagara Daha hingga sekarang. Kerajinan apakah yang dimaksud?",
     answers: [
-        "Rumah Balai Bini",
-        "Rumah Palimasan",
-        "Rumah Bubungan Tinggi",
-        "Rumah Gajah Baliku"
+        "Gerabah Nagara",
+        "Anyaman purun",
+        "Sasirangan",
+        "Ukiran kayu"
+    ],
+    correct: 0
+},
+{
+    question: "Kamu melanjutkan perjalanan ke sebuah desa di Kecamatan Daha Selatan. Di sana, kamu melihat para pengrajin masih mempertahankan cara pembuatan gerabah yang diwariskan dari nenek moyang. Desa apakah yang kamu kunjungi?",
+    answers: [
+        "Habirau",
+        "Bayanan",
+        "Hamayung",
+        "Tumbukan Banyu"
+    ],
+    correct: 1
+},
+{
+    question: "Setelah sampai di Bayanan, kamu penasaran sejak kapan tradisi Gerabah Nagara mulai berkembang. Tradisi ini ternyata sudah dikenal sejak masa…",
+    answers: [
+        "Kesultanan Banjar",
+        "Kerajaan Majapahit",
+        "Kesultanan Demak",
+        "Kerajaan Nagara Daha"
+    ],
+    correct: 3
+},
+{
+    question: "Ratusan tahun berlalu, tetapi tradisi membuat gerabah di Nagara Daha masih terus dilakukan. Keahlian ini tetap bertahan karena…",
+    answers: [
+        "Hanya digunakan untuk acara kerajaan",
+        "Menggunakan mesin modern",
+        "Diwariskan dari generasi ke generasi",
+        "Dibawa oleh pengrajin dari luar daerah"
     ],
     correct: 2
 },
 {
-    question: "Saat memasuki rumah tersebut, kamu mengetahui bahwa pada masa lalu tidak semua orang boleh memilikinya. Rumah Bubungan Tinggi dulunya merupakan tempat tinggal bagi…",
+    question: "Saat menjelajahi sejarah Nagara Daha, kamu menemukan fakta bahwa tanah liat sudah dimanfaatkan untuk berbagai kebutuhan. Selain gerabah, apa saja yang dibuat dari tanah liat?",
     answers: [
-        "Pedagang di pasar",
-        "Tokoh agama",
-        "Sultan atau kalangan bangsawan Banjar",
-        "Para nelayan"
+        "Bata, genteng, kuali, dan wadah penyimpanan air",
+        "Tikar, topi, dan keranjang",
+        "Kain, selendang, dan sarung",
+        "Perahu, rakit, dan jala"
     ],
-    correct: 2
-},
-{
-    question: "Ketika mengamati bentuk bangunannya, kamu melihat bagian atap yang sangat tinggi dan curam. Bentuk atap ini menjadi ciri khas Rumah Bubungan Tinggi karena…",
-    answers: [
-        "Memudahkan pemasangan hiasan",
-        "Sebagai tempat menyimpan hasil panen",
-        "Menjadi identitas utama arsitektur rumah adat Banjar",
-        "Digunakan sebagai menara pengawas"
-    ],
-    correct: 2
-},
-{
-    question: "Di dalam rumah, pemandu menjelaskan bahwa setiap ruangan memiliki fungsi yang berbeda sesuai adat Banjar. Bagian rumah yang biasanya digunakan untuk menerima tamu disebut…",
-    answers: [
-        "Panampik Kacil",
-        "Palatar",
-        "Panampik Basar",
-        "Padapuran"
-    ],
-    correct: 2
-},
-{
-    question: "Menjelang akhir kunjungan, kamu mengetahui bahwa Rumah Bubungan Tinggi bukan sekadar tempat tinggal, tetapi juga melambangkan kedudukan pemiliknya di masyarakat. Filosofi tersebut menunjukkan bahwa rumah ini merupakan simbol…",
-    answers: [
-        "Kehidupan nelayan",
-        "Perdagangan antarpulau",
-        "Martabat, kehormatan, dan status sosial",
-        "Mata pencaharian bertani"
-    ],
-    correct: 2
+    correct: 0
 }
 ];
 
@@ -142,7 +142,7 @@ function selectAnswer(button, index){
         button.classList.add("correct");
 
         correctSound.currentTime = 0;
-        correctSound.play().catch(()=>{}); // Catch pencegahan jika browser memblokir audio otomatis
+        correctSound.play().catch(()=>{});
 
         confetti({
             particleCount:80,
@@ -279,3 +279,4 @@ function sendDataToGoogleSheet() {
         console.error("Gagal mengirim data:", err);
     });
 }
+    

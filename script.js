@@ -230,7 +230,7 @@ function selectAnswer(button, index) {
   const potteryContainer = document.getElementById("potteryContainer");
   if (potteryContainer) potteryContainer.classList.add("opened");
 
-    const productsContainer = document.getElementById("productsContainer");
+  const productsContainer = document.getElementById("productsContainer");
   if (productsContainer) productsContainer.classList.add("opened");
 
   setTimeout(nextQuestion, 1500);
@@ -264,6 +264,15 @@ function startTimer() {
 function resetToTopics() {
   quizScreen.style.display = "none";
   topicScreen.style.display = "block";
+
+  // Munculkan kembali elemen kuis yang sempat disembunyikan saat hasil
+  if (timerEl && timerEl.parentElement) timerEl.parentElement.style.display = "flex";
+  if (progressBar && progressBar.parentElement) progressBar.parentElement.style.display = "block";
+  if (questionNumber && questionNumber.parentElement) questionNumber.parentElement.style.display = "block";
+  
+  const illustrationArea = document.getElementById("illustrationArea");
+  if (illustrationArea) illustrationArea.style.display = "block";
+
   window.scrollTo(0, 0);
 }
 
@@ -271,6 +280,14 @@ function showResult() {
   clearInterval(timer);
   const endTime = Date.now();
   totalDurationInSeconds = Math.round((endTime - startTime) / 1000);
+
+  // Sembunyikan elemen sisa kuis (timer, progres, nomor soal, dan ilustrasi)
+  if (timerEl && timerEl.parentElement) timerEl.parentElement.style.display = "none";
+  if (progressBar && progressBar.parentElement) progressBar.parentElement.style.display = "none";
+  if (questionNumber && questionNumber.parentElement) questionNumber.parentElement.style.display = "none";
+  
+  const illustrationArea = document.getElementById("illustrationArea");
+  if (illustrationArea) illustrationArea.style.display = "none";
 
   if (progressBar) progressBar.style.width = "100%";
   const percent = Math.round((score / questions.length) * 100);

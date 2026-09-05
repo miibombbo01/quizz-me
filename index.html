@@ -31,6 +31,40 @@
         </form>
     </div>
 
+    <!-- LAYAR LOGIN DATA PESERTA -->
+<div id="welcomeScreen" class="welcome-box">
+  <p class="welcome-desc">Silakan isi data diri untuk memulai:</p>
+  <form id="startForm">
+    <div class="input-group">
+      <input type="text" id="userName" placeholder="Nama lengkap" required />
+    </div>
+    <div class="input-group">
+      <input type="text" id="userAddress" placeholder="Desa / Alamat" required />
+    </div>
+    <button type="submit" id="startBtn">Lanjut 🚀</button>
+  </form>
+</div>
+
+<!-- LAYAR PILIHAN KUIS (BARU) -->
+<div id="topicScreen" class="topic-box" style="display: none;">
+  <h2 class="topic-title">Pilih Petualanganmu!</h2>
+  <p class="topic-desc">Pilih salah satu kuis di bawah ini untuk memulai:</p>
+  
+  <div class="topic-container">
+    <button class="topic-card" onclick="selectTopic('nagara')">
+      <span class="topic-badge">Kuis 1</span>
+      <h3>Nagara</h3>
+      <p>Kerajinan Gerabah</p>
+    </button>
+
+    <button class="topic-card" onclick="selectTopic('loksado')">
+      <span class="topic-badge">Kuis 2</span>
+      <h3>Loksado</h3>
+      <p>Tradisi Pertanian</p>
+    </button>
+  </div>
+</div>
+
     <!-- AREA KUIS -->
     <div id="quizScreen" style="display:none;">
         <div class="progress">

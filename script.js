@@ -97,11 +97,8 @@ if (startForm) {
 
     if (!userData.nama || !userData.alamat) return;
 
-    // Sembunyikan Form Login, Tampilkan Pilihan Kuis
     welcomeScreen.style.display = "none";
     topicScreen.style.display = "block";
-    
-    // CATATAN: JANGAN panggil sendDataToGoogleSheet() di sini!
   });
 }
 
@@ -109,7 +106,6 @@ function selectTopic(materi) {
   selectedMateri = materi;
   questions = quizData[materi];
 
-  // Sembunyikan Pilihan Kuis, Tampilkan Layar Soal
   topicScreen.style.display = "none";
   quizScreen.style.display = "block";
 
@@ -136,10 +132,10 @@ function loadQuestion() {
   questionEl.innerText = q.question;
   questionEl.classList.add("question-animate");
   
-      const illustrationArea = document.getElementById("illustrationArea");
+  const illustrationArea = document.getElementById("illustrationArea");
   if (illustrationArea) {
     illustrationArea.innerHTML = ""; 
-        if (selectedMateri === "nagara" && currentQuestion === 0) {
+    if (selectedMateri === "nagara" && currentQuestion === 0) {
       illustrationArea.innerHTML = `
         <div class="gift-container" id="giftContainer">
           <img src="box.png" class="gift-box-img" alt="Box Hadiah">
@@ -151,17 +147,15 @@ function loadQuestion() {
         <div class="map-wrapper" id="mapWrapper">
           <img src="map.jpg" class="map-bg" alt="Peta Daha">
           
-          <!-- 4 Titik Tanda Tanya -->
           <div class="map-point" style="top: 25%; left: 38%;">?</div>
           <div class="map-point" style="top: 61%; left: 34%;">?</div>
           <div class="map-point" style="top: 76%; left: 37%;">?</div>
           <div class="map-point" style="top: 88%; left: 88%;">?</div>
           
-          <!-- Pin Map -->
           <div class="pin-icon">📍</div>
         </div>
       `;
-        }
+    }
   }
   
   answersEl.innerHTML = "";
@@ -184,29 +178,28 @@ function selectAnswer(button, index) {
   const buttons = document.querySelectorAll(".answer-btn");
   buttons.forEach(btn => btn.disabled = true);
 
-    if (index === questions[currentQuestion].correct) {
+  if (index === questions[currentQuestion].correct) {
     score++;
     button.classList.add("correct");
     correctSound.currentTime = 0;
     correctSound.play().catch(() => {});
 
     confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
-
-    // Efek Kado Terbuka (Soal 1)
-    const giftContainer = document.getElementById("giftContainer");
-    if (giftContainer) {
-      giftContainer.classList.add("opened");
-    }
-
-    // Efek Peta Zoom & Pin (Soal 2)
-    const mapWrapper = document.getElementById("mapWrapper");
-    if (mapWrapper) {
-      mapWrapper.classList.add("revealed");
-    }
   } else {
     button.classList.add("wrong");
     if (navigator.vibrate) navigator.vibrate(300);
     buttons[questions[currentQuestion].correct].classList.add("correct");
+  }
+
+  // Animasi visual tetap muncul saat soal dijawab (baik benar maupun salah)
+  const giftContainer = document.getElementById("giftContainer");
+  if (giftContainer) {
+    giftContainer.classList.add("opened");
+  }
+
+  const mapWrapper = document.getElementById("mapWrapper");
+  if (mapWrapper) {
+    mapWrapper.classList.add("revealed");
   }
 
   setTimeout(nextQuestion, 1500);
@@ -237,14 +230,12 @@ function startTimer() {
   }, 1000);
 }
 
-// Tambahkan fungsi baru ini untuk balik ke pilihan kuis
 function resetToTopics() {
   quizScreen.style.display = "none";
   topicScreen.style.display = "block";
   window.scrollTo(0, 0);
 }
 
-// Update fungsi showResult agar menampilkan tombol "Lanjut Kuis Lain"
 function showResult() {
   clearInterval(timer);
   const endTime = Date.now();
@@ -265,7 +256,6 @@ function showResult() {
         <div class="result-badge">${badge}</div>
         <p class="result-message">${message}</p>
         
-        <!-- TOMBOL PILIH KUIS LAIN -->
         <button onclick="resetToTopics()" class="next-adventure-btn">
           🗺️ Lanjut ke Kuis Lain
         </button>
@@ -288,13 +278,10 @@ function showResult() {
     answersEl.appendChild(review);
   });
 
-  // Tambahkan riwayat browser supaya tombol BACK HP tidak langsung keluar dari web
   history.pushState({ page: "result" }, "");
-
   sendDataToGoogleSheet();
 }
 
-// Tangkap pencatan tombol BACK di HP/Browser
 window.onpopstate = function (event) {
   if (quizScreen.style.display === "block") {
     resetToTopics();
@@ -312,7 +299,6 @@ function sendDataToGoogleSheet() {
     duration: totalDurationInSeconds
   };
 
-  // Kirim data menggunakan format form URL encoded agar pasti diterima Google Apps Script tanpa diblokir
   fetch(SCRIPT_URL, {
     method: "POST",
     mode: "no-cors",

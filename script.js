@@ -162,6 +162,20 @@ function loadQuestion() {
           <img src="scroll-open.png" class="scroll-open-img" alt="Gulungan Terbuka">
         </div>
       `;
+    }else if (selectedMateri === "nagara" && currentQuestion === 3) {
+      illustrationArea.innerHTML = `
+        <div class="pottery-container" id="potteryContainer">
+          <img src="clay-raw.png" class="clay-raw-img" alt="Bongkahan Tanah Liat">
+          <img src="pottery-hands.png" class="pottery-hands-img" alt="Membentuk Gerabah Bersama">
+        </div>
+      `;
+    }else if (selectedMateri === "nagara" && currentQuestion === 3) {
+      illustrationArea.innerHTML = `
+        <div class="pottery-container" id="potteryContainer">
+          <img src="clay-raw.png" class="clay-raw-img" alt="Bongkahan Tanah Liat">
+          <img src="pottery-hands.png" class="pottery-hands-img" alt="Membentuk Gerabah Bersama">
+        </div>
+      `;
     }
   }
   
@@ -213,6 +227,10 @@ function selectAnswer(button, index) {
     if (scrollContainer) {
       scrollContainer.classList.add("opened");
     }
+
+  const potteryContainer = document.getElementById("potteryContainer");
+    if (potteryContainer) {
+      potteryContainer.classList.add("opened");
 
   setTimeout(nextQuestion, 1500);
 }

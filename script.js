@@ -281,6 +281,6 @@ function sendDataToGoogleSheet() {
     },
     body: "data=" + encodeURIComponent(JSON.stringify(payload))
   })
-  .then(() => alert("✅ Data berhasil dikirim ke Google Sheet!"))
+  .then(() => console.log("Data berhasil terkirim"))
   .catch(err => alert("❌ Gagal kirim: " + err));
 }

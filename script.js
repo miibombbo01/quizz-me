@@ -1,4 +1,4 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJUdHFOCMbyuCUcokfpelXtAcLLlcoQjISs27fBe95CClID-DEXtyEDn6tkK7M9IiJ-g/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxrCvlRCA5FU1H49L1_njSWGPlGtesxOiSL6wwG0CKBprZCWe5emMJ-_0I1RE5IrwDWA/exec";
 
 const quizData = {
   nagara: [
@@ -267,16 +267,20 @@ function sendDataToGoogleSheet() {
   const payload = {
     nama: userData.nama,
     alamat: userData.alamat,
-    materi: selectedMateri.toUpperCase(), // "NAGARA" atau "LOKSADO"
+    materi: selectedMateri.toUpperCase(),
     score: score,
     duration: totalDurationInSeconds
   };
 
+  // Kirim data menggunakan format form URL encoded agar pasti diterima Google Apps Script tanpa diblokir
   fetch(SCRIPT_URL, {
     method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(payload)
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "data=" + encodeURIComponent(JSON.stringify(payload))
   })
-  .then(res => console.log("Data berhasil terkirim!"))
-  .catch(err => console.error("Gagal mengirim data:", err));
+  .then(() => alert("✅ Data berhasil dikirim ke Google Sheet!"))
+  .catch(err => alert("❌ Gagal kirim: " + err));
 }

@@ -872,3 +872,45 @@ h2,h3{
   transform: translate(-50%, -100%) scale(1.2);
 }
 
+/* Container Gulungan Sejarah (Soal 3) */
+.scroll-container {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Gambar Gulungan Tertutup */
+.scroll-closed-img {
+  width: 140px;
+  height: auto;
+  transition: transform 0.5s ease, opacity 0.4s ease;
+  z-index: 2;
+}
+
+/* Gambar Gulungan Terbuka (Awalnya menciut total) */
+.scroll-open-img {
+  position: absolute;
+  width: 100%;
+  max-width: 270px;
+  height: auto;
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s, opacity 0.3s ease 0.2s;
+  z-index: 3;
+}
+
+/* Saat Dijawab: Gulungan Tertutup Menciut & Terbuka Meletup */
+.scroll-container.opened .scroll-closed-img {
+  transform: scale(0) rotate(-15deg);
+  opacity: 0;
+}
+
+.scroll-container.opened .scroll-open-img {
+  opacity: 1;
+  transform: scale(1);
+   }

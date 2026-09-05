@@ -988,6 +988,34 @@ h2,h3{
   z-index: 3;
 }
 
+/* Styling untuk Tombol Pilihan Topik / Kuis */
+.topic-container {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Box Kuis 1 (Nagara) - Biru muda sedikit lebih muda dari Loksado */
+.topic-card.nagara {
+  background: linear-gradient(135deg, #5bc0de, #31b0d5); /* Sesuaikan gradasi biru muda */
+  color: #ffffff;
+}
+
+/* Box Kuis 2 (Loksado) - Biru toska/cyan */
+.topic-card.loksado {
+  background: linear-gradient(135deg, #00b4d8, #0077b6); 
+  color: #ffffff;
+}
+
+/* Memastikan semua teks di dalam box topik berwarna putih */
+.topic-card h3,
+.topic-card p,
+.topic-card span,
+.topic-card .badge-kuis {
+  color: #ffffff !important;
+}
+
 .products-container.opened .products-raw-img {
   transform: scale(0) rotate(15deg);
   opacity: 0;

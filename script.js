@@ -195,6 +195,14 @@ function startTimer() {
   }, 1000);
 }
 
+// Tambahkan fungsi baru ini untuk balik ke pilihan kuis
+function resetToTopics() {
+  quizScreen.style.display = "none";
+  topicScreen.style.display = "block";
+  window.scrollTo(0, 0);
+}
+
+// Update fungsi showResult agar menampilkan tombol "Lanjut Kuis Lain"
 function showResult() {
   clearInterval(timer);
   const endTime = Date.now();
@@ -214,6 +222,11 @@ function showResult() {
         <p style="font-size:13px; color:var(--text-light); margin-top:5px;">Total Waktu: <b>${totalDurationInSeconds} detik</b></p>
         <div class="result-badge">${badge}</div>
         <p class="result-message">${message}</p>
+        
+        <!-- TOMBOL PILIH KUIS LAIN -->
+        <button onclick="resetToTopics()" class="next-adventure-btn">
+          🗺️ Lanjut ke Kuis Lain
+        </button>
     </div>
   `;
 
@@ -233,8 +246,18 @@ function showResult() {
     answersEl.appendChild(review);
   });
 
+  // Tambahkan riwayat browser supaya tombol BACK HP tidak langsung keluar dari web
+  history.pushState({ page: "result" }, "");
+
   sendDataToGoogleSheet();
 }
+
+// Tangkap pencatan tombol BACK di HP/Browser
+window.onpopstate = function (event) {
+  if (quizScreen.style.display === "block") {
+    resetToTopics();
+  }
+};
 
 function sendDataToGoogleSheet() {
   if (!SCRIPT_URL) return;

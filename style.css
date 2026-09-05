@@ -752,10 +752,10 @@ h2,h3{
 .next-adventure-btn {
   display: block;
   width: 100%;
-  max-width: 320px;
+  max-width: 100%; /* Diubah jadi 100% agar selebar card */
   margin: 24px auto 0 auto;
   padding: 16px 24px;
-  background: linear-gradient(135deg, #00b4d8, #0077b6);
+  background: linear-gradient(135deg, #00b4d8, #0077b6) !important;
   color: #ffffff !important;
   font-family: var(--font-heading);
   font-size: 16px;
@@ -770,7 +770,7 @@ h2,h3{
 }
 
 .next-adventure-btn:hover {
-  background: linear-gradient(135deg, #48cae4, #00b4d8);
+  background: linear-gradient(135deg, #48cae4, #00b4d8) !important;
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(0, 180, 216, 0.4), 0 4px 8px rgba(0, 0, 0, 0.08);
 }
@@ -779,5 +779,3 @@ h2,h3{
   transform: scale(0.96) translateY(2px);
   box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
 }
-
-   

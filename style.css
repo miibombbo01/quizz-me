@@ -604,3 +604,83 @@ h2,h3{
 #startBtn:hover {
     background: var(--primary-dark);
 }
+
+/* Layout Pilihan Kuis */
+.topic-box {
+  text-align: center;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.topic-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.topic-desc {
+  font-size: 0.9rem;
+  color: var(--text-light, #666);
+  margin-bottom: 24px;
+}
+
+/* Container Dua Tombol Kiri Kanan */
+.topic-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Desain Tombol Kotak Radial, Stroke Putih, & Shadow */
+.topic-card {
+  background: linear-gradient(135deg, #6366f1, #4f46e5); /* Warna gradasi elegan */
+  color: #ffffff;
+  border: 3px solid #ffffff; /* Stroke Putih */
+  border-radius: 20px; /* Sudut Radial */
+  padding: 20px 12px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3), 0 4px 6px rgba(0, 0, 0, 0.05); /* Shadow halus */
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  outline: none;
+}
+
+.topic-card:nth-child(2) {
+  background: linear-gradient(135deg, #06b6d4, #0891b2); /* Pembeda warna kuis 2 */
+  box-shadow: 0 10px 20px rgba(8, 145, 178, 0.3), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Animasi Saat Klik (Pressed Effect) */
+.topic-card:active {
+  transform: scale(0.92) translateY(4px); /* Mengempis & turun sedikit */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow mengecil saat ditekan */
+}
+
+/* Elemen Teks Dalam Tombol */
+.topic-badge {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.topic-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 4px 0;
+}
+
+.topic-card p {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  margin: 0;
+}

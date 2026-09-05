@@ -745,4 +745,39 @@ h2,h3{
   opacity: 1;
   transform: scale(1);
    }
+
+/* ==========================================
+   TOMBOL LANJUT KE KUIS LAIN (GRADASI BIRU)
+========================================== */
+.next-adventure-btn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 24px auto 0 auto;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #00b4d8, #0077b6);
+  color: #ffffff !important;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 119, 182, 0.3), 0 3px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  outline: none;
+}
+
+.next-adventure-btn:hover {
+  background: linear-gradient(135deg, #48cae4, #00b4d8);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 180, 216, 0.4), 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.next-adventure-btn:active {
+  transform: scale(0.96) translateY(2px);
+  box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
+}
+
    

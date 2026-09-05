@@ -1,4 +1,4 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybbLhbLpsCuMjuBniRh7jaLwaQU9J3YEMNzKjDS0JhwgZRe1P4-pPh8rFezZThPbd_nA/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwUXXxh_uBvdQlsoA_gDMitd9dYaCdgfq41isziIx9LadN5iW2xZItkPR3BlF7rc_CUCg/exec";
 
 const quizData = {
   nagara: [

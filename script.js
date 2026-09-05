@@ -100,6 +100,8 @@ if (startForm) {
     // Sembunyikan Form Login, Tampilkan Pilihan Kuis
     welcomeScreen.style.display = "none";
     topicScreen.style.display = "block";
+    
+    // CATATAN: JANGAN panggil sendDataToGoogleSheet() di sini!
   });
 }
 

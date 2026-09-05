@@ -146,6 +146,22 @@ function loadQuestion() {
           <img src="gerabah.png" class="gerabah-img" alt="Gerabah Nagara">
         </div>
       `;
+          else if (selectedMateri === "nagara" && currentQuestion === 1) {
+      illustrationArea.innerHTML = `
+        <div class="map-wrapper" id="mapWrapper">
+          <img src="map.jpg" class="map-bg" alt="Peta Daha">
+          
+          <!-- 4 Titik Tanda Tanya Sesuai Posisi Gambar -->
+          <div class="map-point" style="top: 25%; left: 38%;">?</div> <!-- Habirau -->
+          <div class="map-point" style="top: 61%; left: 34%;">?</div> <!-- Tumbukan Banyu -->
+          <div class="map-point" style="top: 76%; left: 37%;">?</div> <!-- Bayanan -->
+          <div class="map-point" style="top: 88%; left: 88%;">?</div> <!-- Hamayung -->
+          
+          <!-- Pin Map yang muncul di Bayanan -->
+          <div class="pin-icon">📍</div>
+        </div>
+      `;
+    }
     }
   }
   

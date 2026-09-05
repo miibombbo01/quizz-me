@@ -136,15 +136,17 @@ function loadQuestion() {
   questionEl.innerText = q.question;
   questionEl.classList.add("question-animate");
   
-    // Tampilkan kado khusus di Soal 1 Nagara
-  if (selectedMateri === "nagara" && currentQuestion === 0) {
-    const giftHTML = `
-      <div class="gift-container" id="giftContainer">
-        <img src="gerabah.png" class="gerabah-img" alt="Gerabah Nagara">
-        <img src="box.png" class="gift-box-img" alt="Box Hadiah">
-      </div>
-    `;
-    questionEl.innerHTML = q.question + giftHTML;
+      const illustrationArea = document.getElementById("illustrationArea");
+  if (illustrationArea) {
+    illustrationArea.innerHTML = ""; 
+    if (selectedMateri === "nagara" && currentQuestion === 0) {
+      illustrationArea.innerHTML = `
+        <div class="gift-container" id="giftContainer">
+          <img src="box.png" class="gift-box-img" alt="Box Hadiah">
+          <img src="gerabah.png" class="gerabah-img" alt="Gerabah Nagara">
+        </div>
+      `;
+    }
   }
   
   answersEl.innerHTML = "";
@@ -184,6 +186,12 @@ function selectAnswer(button, index) {
     if (navigator.vibrate) navigator.vibrate(300);
     buttons[questions[currentQuestion].correct].classList.add("correct");
   }
+
+    const giftContainer = document.getElementById("giftContainer");
+    if (giftContainer) {
+      giftContainer.classList.add("opened");
+    }
+  
 
   setTimeout(nextQuestion, 1500);
 }

@@ -212,7 +212,7 @@ function selectAnswer(button, index) {
     buttons[questions[currentQuestion].correct].classList.add("correct");
   }
 
-  // Animasi visual tetap muncul saat soal dijawab (baik benar maupun salah)
+  // Animasi visual tetap muncul saat soal dijawab
   const giftContainer = document.getElementById("giftContainer");
   if (giftContainer) {
     giftContainer.classList.add("opened");
@@ -224,13 +224,14 @@ function selectAnswer(button, index) {
   }
 
   const scrollContainer = document.getElementById("scrollContainer");
-    if (scrollContainer) {
-      scrollContainer.classList.add("opened");
-    }
+  if (scrollContainer) {
+    scrollContainer.classList.add("opened");
+  }
 
   const potteryContainer = document.getElementById("potteryContainer");
-    if (potteryContainer) {
-      potteryContainer.classList.add("opened");
+  if (potteryContainer) {
+    potteryContainer.classList.add("opened");
+  } 
 
   setTimeout(nextQuestion, 1500);
 }

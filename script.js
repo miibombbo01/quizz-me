@@ -139,30 +139,29 @@ function loadQuestion() {
       const illustrationArea = document.getElementById("illustrationArea");
   if (illustrationArea) {
     illustrationArea.innerHTML = ""; 
-    if (selectedMateri === "nagara" && currentQuestion === 0) {
+        if (selectedMateri === "nagara" && currentQuestion === 0) {
       illustrationArea.innerHTML = `
         <div class="gift-container" id="giftContainer">
           <img src="box.png" class="gift-box-img" alt="Box Hadiah">
           <img src="gerabah.png" class="gerabah-img" alt="Gerabah Nagara">
         </div>
       `;
-          else if (selectedMateri === "nagara" && currentQuestion === 1) {
+    } else if (selectedMateri === "nagara" && currentQuestion === 1) {
       illustrationArea.innerHTML = `
         <div class="map-wrapper" id="mapWrapper">
           <img src="map.jpg" class="map-bg" alt="Peta Daha">
           
-          <!-- 4 Titik Tanda Tanya Sesuai Posisi Gambar -->
-          <div class="map-point" style="top: 25%; left: 38%;">?</div> <!-- Habirau -->
-          <div class="map-point" style="top: 61%; left: 34%;">?</div> <!-- Tumbukan Banyu -->
-          <div class="map-point" style="top: 76%; left: 37%;">?</div> <!-- Bayanan -->
-          <div class="map-point" style="top: 88%; left: 88%;">?</div> <!-- Hamayung -->
+          <!-- 4 Titik Tanda Tanya -->
+          <div class="map-point" style="top: 25%; left: 38%;">?</div>
+          <div class="map-point" style="top: 61%; left: 34%;">?</div>
+          <div class="map-point" style="top: 76%; left: 37%;">?</div>
+          <div class="map-point" style="top: 88%; left: 88%;">?</div>
           
-          <!-- Pin Map yang muncul di Bayanan -->
+          <!-- Pin Map -->
           <div class="pin-icon">📍</div>
         </div>
       `;
-    }
-    }
+        }
   }
   
   answersEl.innerHTML = "";
@@ -185,29 +184,30 @@ function selectAnswer(button, index) {
   const buttons = document.querySelectorAll(".answer-btn");
   buttons.forEach(btn => btn.disabled = true);
 
-  if (index === questions[currentQuestion].correct) {
+    if (index === questions[currentQuestion].correct) {
     score++;
     button.classList.add("correct");
     correctSound.currentTime = 0;
     correctSound.play().catch(() => {});
 
     confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
-        // Efek kado terbuka saat jawaban benar
+
+    // Efek Kado Terbuka (Soal 1)
     const giftContainer = document.getElementById("giftContainer");
     if (giftContainer) {
       giftContainer.classList.add("opened");
+    }
+
+    // Efek Peta Zoom & Pin (Soal 2)
+    const mapWrapper = document.getElementById("mapWrapper");
+    if (mapWrapper) {
+      mapWrapper.classList.add("revealed");
     }
   } else {
     button.classList.add("wrong");
     if (navigator.vibrate) navigator.vibrate(300);
     buttons[questions[currentQuestion].correct].classList.add("correct");
   }
-
-    const giftContainer = document.getElementById("giftContainer");
-    if (giftContainer) {
-      giftContainer.classList.add("opened");
-    }
-  
 
   setTimeout(nextQuestion, 1500);
 }

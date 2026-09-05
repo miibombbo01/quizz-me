@@ -267,15 +267,16 @@ function sendDataToGoogleSheet() {
   const payload = {
     nama: userData.nama,
     alamat: userData.alamat,
-    materi: selectedMateri.toUpperCase(), // Menyimpan "NAGARA" atau "LOKSADO"
+    materi: selectedMateri.toUpperCase(), // "NAGARA" atau "LOKSADO"
     score: score,
     duration: totalDurationInSeconds
   };
 
   fetch(SCRIPT_URL, {
     method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
     body: JSON.stringify(payload)
-  }).catch(err => console.error("Gagal mengirim data:", err));
-        }
+  })
+  .then(res => console.log("Data berhasil terkirim!"))
+  .catch(err => console.error("Gagal mengirim data:", err));
+}

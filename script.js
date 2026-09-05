@@ -172,6 +172,13 @@ function loadQuestion() {
           <img src="pottery-hands.png" class="pottery-hands-img" alt="Membentuk Gerabah Bersama">
         </div>
       `;
+    } else if (selectedMateri === "nagara" && currentQuestion === 4) {
+      illustrationArea.innerHTML = `
+        <div class="products-container" id="productsContainer">
+          <img src="before.png" class="products-raw-img" alt="Tanah Liat Mentah">
+          <img src="after.png" class="products-open-img" alt="Produk Tanah Liat">
+        </div>
+      `;
     }
   }
 
@@ -222,6 +229,9 @@ function selectAnswer(button, index) {
 
   const potteryContainer = document.getElementById("potteryContainer");
   if (potteryContainer) potteryContainer.classList.add("opened");
+
+    const productsContainer = document.getElementById("productsContainer");
+  if (productsContainer) productsContainer.classList.add("opened");
 
   setTimeout(nextQuestion, 1500);
 }

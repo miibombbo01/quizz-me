@@ -155,6 +155,13 @@ function loadQuestion() {
           <div class="pin-icon">📍</div>
         </div>
       `;
+    }else if (selectedMateri === "nagara" && currentQuestion === 2) {
+      illustrationArea.innerHTML = `
+        <div class="scroll-container" id="scrollContainer">
+          <img src="scroll-closed.png" class="scroll-closed-img" alt="Gulungan Tertutup">
+          <img src="scroll-open.png" class="scroll-open-img" alt="Gulungan Terbuka">
+        </div>
+      `;
     }
   }
   
@@ -201,6 +208,11 @@ function selectAnswer(button, index) {
   if (mapWrapper) {
     mapWrapper.classList.add("revealed");
   }
+
+  const scrollContainer = document.getElementById("scrollContainer");
+    if (scrollContainer) {
+      scrollContainer.classList.add("opened");
+    }
 
   setTimeout(nextQuestion, 1500);
 }

@@ -90,12 +90,15 @@ const progressBar = document.getElementById("progressBar");
 const questionNumber = document.getElementById("questionNumber");
 
 if (startForm) {
-  startForm.addEventListener("submit", function(e) {
-    e.preventDefault();
+  startForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // Mencegah reload halaman
     userData.nama = document.getElementById("userName").value.trim();
     userData.alamat = document.getElementById("userAddress").value.trim();
 
-    if (!userData.nama || !userData.alamat) return;
+    if (!userData.nama || !userData.alamat) {
+      alert("Silakan isi nama dan alamat terlebih dahulu!");
+      return;
+    }
 
     welcomeScreen.style.display = "none";
     topicScreen.style.display = "block";
@@ -119,22 +122,24 @@ function selectTopic(materi) {
 
 function loadQuestion() {
   clearInterval(timer);
-  nextBtn.style.display = "none";
+  if (nextBtn) nextBtn.style.display = "none";
 
   const q = questions[currentQuestion];
-  questionNumber.textContent = currentQuestion + 1;
+  if (questionNumber) questionNumber.textContent = currentQuestion + 1;
 
-  progressBar.style.width = (currentQuestion / questions.length) * 100 + "%";
+  if (progressBar) {
+    progressBar.style.width = (currentQuestion / questions.length) * 100 + "%";
+  }
 
   questionEl.classList.remove("question-animate");
   void questionEl.offsetWidth;
 
   questionEl.innerText = q.question;
   questionEl.classList.add("question-animate");
-  
+
   const illustrationArea = document.getElementById("illustrationArea");
   if (illustrationArea) {
-    illustrationArea.innerHTML = ""; 
+    illustrationArea.innerHTML = "";
     if (selectedMateri === "nagara" && currentQuestion === 0) {
       illustrationArea.innerHTML = `
         <div class="gift-container" id="giftContainer">
@@ -146,30 +151,21 @@ function loadQuestion() {
       illustrationArea.innerHTML = `
         <div class="map-wrapper" id="mapWrapper">
           <img src="map.jpg" class="map-bg" alt="Peta Daha">
-          
           <div class="map-point" style="top: 25%; left: 38%;">?</div>
           <div class="map-point" style="top: 61%; left: 34%;">?</div>
           <div class="map-point" style="top: 76%; left: 37%;">?</div>
           <div class="map-point" style="top: 88%; left: 88%;">?</div>
-          
           <div class="pin-icon">📍</div>
         </div>
       `;
-    }else if (selectedMateri === "nagara" && currentQuestion === 2) {
+    } else if (selectedMateri === "nagara" && currentQuestion === 2) {
       illustrationArea.innerHTML = `
         <div class="scroll-container" id="scrollContainer">
           <img src="scroll-closed.png" class="scroll-closed-img" alt="Gulungan Tertutup">
           <img src="scroll-open.png" class="scroll-open-img" alt="Gulungan Terbuka">
         </div>
       `;
-    }else if (selectedMateri === "nagara" && currentQuestion === 3) {
-      illustrationArea.innerHTML = `
-        <div class="pottery-container" id="potteryContainer">
-          <img src="clay-raw.png" class="clay-raw-img" alt="Bongkahan Tanah Liat">
-          <img src="pottery-hands.png" class="pottery-hands-img" alt="Membentuk Gerabah Bersama">
-        </div>
-      `;
-    }else if (selectedMateri === "nagara" && currentQuestion === 3) {
+    } else if (selectedMateri === "nagara" && currentQuestion === 3) {
       illustrationArea.innerHTML = `
         <div class="pottery-container" id="potteryContainer">
           <img src="clay-raw.png" class="clay-raw-img" alt="Bongkahan Tanah Liat">
@@ -178,7 +174,7 @@ function loadQuestion() {
       `;
     }
   }
-  
+
   answersEl.innerHTML = "";
 
   q.answers.forEach((answer, index) => {
@@ -197,7 +193,7 @@ function selectAnswer(button, index) {
   userAnswers[currentQuestion] = index;
 
   const buttons = document.querySelectorAll(".answer-btn");
-  buttons.forEach(btn => btn.disabled = true);
+  buttons.forEach((btn) => (btn.disabled = true));
 
   if (index === questions[currentQuestion].correct) {
     score++;
@@ -205,33 +201,27 @@ function selectAnswer(button, index) {
     correctSound.currentTime = 0;
     correctSound.play().catch(() => {});
 
-    confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+    if (typeof confetti === "function") {
+      confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+    }
   } else {
     button.classList.add("wrong");
     if (navigator.vibrate) navigator.vibrate(300);
     buttons[questions[currentQuestion].correct].classList.add("correct");
   }
 
-  // Animasi visual tetap muncul saat soal dijawab
+  // Pemicu Animasi Gambar
   const giftContainer = document.getElementById("giftContainer");
-  if (giftContainer) {
-    giftContainer.classList.add("opened");
-  }
+  if (giftContainer) giftContainer.classList.add("opened");
 
   const mapWrapper = document.getElementById("mapWrapper");
-  if (mapWrapper) {
-    mapWrapper.classList.add("revealed");
-  }
+  if (mapWrapper) mapWrapper.classList.add("revealed");
 
   const scrollContainer = document.getElementById("scrollContainer");
-  if (scrollContainer) {
-    scrollContainer.classList.add("opened");
-  }
+  if (scrollContainer) scrollContainer.classList.add("opened");
 
   const potteryContainer = document.getElementById("potteryContainer");
-  if (potteryContainer) {
-    potteryContainer.classList.add("opened");
-  } 
+  if (potteryContainer) potteryContainer.classList.add("opened");
 
   setTimeout(nextQuestion, 1500);
 }
@@ -247,11 +237,11 @@ function nextQuestion() {
 
 function startTimer() {
   timeLeft = 30;
-  timerEl.textContent = timeLeft;
+  if (timerEl) timerEl.textContent = timeLeft;
 
   timer = setInterval(() => {
     timeLeft--;
-    timerEl.textContent = timeLeft;
+    if (timerEl) timerEl.textContent = timeLeft;
 
     if (timeLeft <= 0) {
       clearInterval(timer);
@@ -272,7 +262,7 @@ function showResult() {
   const endTime = Date.now();
   totalDurationInSeconds = Math.round((endTime - startTime) / 1000);
 
-  progressBar.style.width = "100%";
+  if (progressBar) progressBar.style.width = "100%";
   const percent = Math.round((score / questions.length) * 100);
 
   let badge = percent === 100 ? "🥇 Budayawan HSS" : percent >= 80 ? "🥈 Penjelajah Budaya" : "🥉 Masih Belajar";
@@ -314,7 +304,7 @@ function showResult() {
 }
 
 window.onpopstate = function (event) {
-  if (quizScreen.style.display === "block") {
+  if (quizScreen && quizScreen.style.display === "block") {
     resetToTopics();
   }
 };
@@ -338,6 +328,6 @@ function sendDataToGoogleSheet() {
     },
     body: "data=" + encodeURIComponent(JSON.stringify(payload))
   })
-  .then(() => console.log("Data berhasil terkirim"))
-  .catch(err => alert("❌ Gagal kirim: " + err));
+    .then(() => console.log("Data berhasil terkirim"))
+    .catch((err) => alert("❌ Gagal kirim: " + err));
 }

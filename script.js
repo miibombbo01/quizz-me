@@ -215,14 +215,14 @@ function loadQuestion() {
   const illustrationArea = document.getElementById("illustrationArea");
   if (illustrationArea) {
     illustrationArea.innerHTML = "";
-    if (selectedMateri === "nagara" && currentQuestion === 0) {
+    if (selectedMateri === "gerabah" && currentQuestion === 0) {
       illustrationArea.innerHTML = `
         <div class="gift-container" id="giftContainer">
           <img src="box.png" class="gift-box-img" alt="Box Hadiah">
           <img src="gerabah.png" class="gerabah-img" alt="Gerabah Nagara">
         </div>
       `;
-    } else if (selectedMateri === "nagara" && currentQuestion === 1) {
+    } else if (selectedMateri === "gerabah" && currentQuestion === 1) {
       illustrationArea.innerHTML = `
         <div class="map-wrapper" id="mapWrapper">
           <img src="map.jpg" class="map-bg" alt="Peta Daha">
@@ -233,21 +233,21 @@ function loadQuestion() {
           <div class="pin-icon">📍</div>
         </div>
       `;
-    } else if (selectedMateri === "nagara" && currentQuestion === 2) {
+    } else if (selectedMateri === "gerabah" && currentQuestion === 2) {
       illustrationArea.innerHTML = `
         <div class="scroll-container" id="scrollContainer">
           <img src="scroll-closed.png" class="scroll-closed-img" alt="Gulungan Tertutup">
           <img src="scroll-open.png" class="scroll-open-img" alt="Gulungan Terbuka">
         </div>
       `;
-    } else if (selectedMateri === "nagara" && currentQuestion === 3) {
+    } else if (selectedMateri === "gerabah" && currentQuestion === 3) {
       illustrationArea.innerHTML = `
         <div class="pottery-container" id="potteryContainer">
           <img src="clay-raw.png" class="clay-raw-img" alt="Bongkahan Tanah Liat">
           <img src="pottery-hands.png" class="pottery-hands-img" alt="Membentuk Gerabah Bersama">
         </div>
       `;
-    } else if (selectedMateri === "nagara" && currentQuestion === 4) {
+    } else if (selectedMateri === "gerabah" && currentQuestion === 4) {
       illustrationArea.innerHTML = `
         <div class="products-container" id="productsContainer">
           <img src="before.png" class="products-raw-img" alt="Tanah Liat Mentah">

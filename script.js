@@ -255,6 +255,43 @@ function loadQuestion() {
         </div>
       `;
     }
+
+    // Tambahan untuk materi Lamang Kandangan
+  if (selectedMateri === "lamang" && currentQuestion === 0) {
+    illustrationArea.innerHTML = `
+      <div class="lamang-container" id="lamangContainer1">
+        <img src="masak_lemang.png" class="lamang-before-img" alt="Memasak Lemang">
+        <img src="lemang_masak.png" class="lamang-after-img" alt="Lemang Masak">
+      </div>
+    `;
+  } else if (selectedMateri === "lamang" && currentQuestion === 1) {
+    illustrationArea.innerHTML = `
+      <div class="lamang-container" id="lamangContainer2">
+        <img src="lemang_kosong.png" class="lamang-before-img" alt="Lemang Polos">
+        <img src="lemang_ga_kosong.png" class="lamang-after-img" alt="Lemang dengan Pisau">
+      </div>
+    `;
+  } else if (selectedMateri === "lamang" && currentQuestion === 2) {
+    illustrationArea.innerHTML = `
+      <div class="lamang-container zoom-effect" id="lamangContainer3">
+        <img src="lemang_ga_kosong.png" class="lamang-before-img" alt="Lemang dan Telur">
+      </div>
+    `;
+  } else if (selectedMateri === "lamang" && currentQuestion === 3) {
+    illustrationArea.innerHTML = `
+      <div class="lamang-container" id="lamangContainer4">
+        <img src="hajatan.png" class="lamang-before-img" alt="Suasana Hajatan">
+        <img src="perayaan_adat.png" class="lamang-after-img" alt="Perayaan Adat">
+      </div>
+    `;
+  } else if (selectedMateri === "lamang" && currentQuestion === 4) {
+    illustrationArea.innerHTML = `
+      <div class="lamang-container" id="lamangContainer5">
+        <img src="lemang_5.png" class="lamang-before-img" alt="Lemang">
+        <img src="pelengkap_5.png" class="lamang-after-img" alt="Pelengkap Lemang">
+      </div>
+    `;
+  }
   }
 
   answersEl.innerHTML = "";

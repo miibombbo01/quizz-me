@@ -31,22 +31,34 @@
         </form>
     </div>
 
-        <!-- LAYAR PILIHAN KUIS -->
+            <!-- LAYAR PILIHAN KUIS -->
     <div id="topicScreen" class="topic-box" style="display: none;">
         <h2 class="topic-title">Pilih Petualanganmu!</h2>
         <p class="topic-desc">Pilih salah satu kuis di bawah ini untuk memulai:</p>
         
-        <div class="topic-container">
-            <button class="topic-card nagara" onclick="selectTopic('nagara')">
+        <div class="topic-container" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+            <button class="topic-card nagara" onclick="selectTopic('gerabah')">
                 <span class="topic-badge">Kuis 1</span>
-                <h3>Nagara</h3>
+                <h3>Gerabah</h3>
                 <p>Kerajinan Tradisional</p>
             </button>
 
-            <button class="topic-card loksado" onclick="selectTopic('loksado')">
+            <button class="topic-card loksado" onclick="selectTopic('aruh_ganal')">
                 <span class="topic-badge">Kuis 2</span>
-                <h3>Loksado</h3>
+                <h3>Aruh Ganal</h3>
                 <p>Tradisi Pertanian</p>
+            </button>
+
+            <button class="topic-card nagara" onclick="selectTopic('lamang')">
+                <span class="topic-badge">Kuis 3</span>
+                <h3>Lamang Kandangan</h3>
+                <p>Kuliner Khas</p>
+            </button>
+
+            <button class="topic-card loksado" onclick="selectTopic('bubungan_tinggi')">
+                <span class="topic-badge">Kuis 4</span>
+                <h3>Rumah Bubungan Tinggi</h3>
+                <p>Arsitektur Banjar</p>
             </button>
         </div>
     </div>

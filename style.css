@@ -798,35 +798,46 @@ h2,h3{
   transition: transform 0.5s ease;
      }
 
-/* Container Ilustrasi Lamang */
-.lamang-container {
-  position: relative;
+/* Container Utama Ilustrasi */
+#illustrationArea {
   width: 100%;
-  max-width: 400px; /* Sesuaikan lebar maksimal yang diinginkan */
-  height: 250px;    /* Sesuaikan tinggi area gambar */
-  margin: 0 auto;
+  max-width: 360px;
+  height: 180px; /* Batasi tinggi maksimum agar tidak makan tempat */
+  margin: 0 auto 12px auto;
+  position: relative;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
-/* Pengaturan Gambar Sebelum & Sesudah */
+.lamang-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 .lamang-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Menjaga rasio gambar agar tidak peyang */
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Agar gambar rapi tidak terdistorsi */
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  border-radius: 14px;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Gambar 'After' disembunyikan secara default */
+.lamang-before-img {
+  z-index: 2;
+  opacity: 1;
+}
+
 .lamang-after-img {
+  z-index: 3;
   opacity: 0;
   pointer-events: none;
 }
 
-/* Ketika jawaban dipilih (efek animasi overlay) */
+/* Saat jawaban dipilih, transisi halus ke gambar setelahnya */
 .lamang-container.opened .lamang-before-img {
   opacity: 0;
 }
@@ -835,8 +846,8 @@ h2,h3{
   opacity: 1;
 }
 
-/* Efek khusus Zoom In untuk Soal No. 3 */
+/* Khusus efek zoom jika diperlukan */
 #lamangContainer3.opened img {
-  transform: scale(1.6);
-  transform-origin: top right;
+  transform: scale(1.3);
+  transform-origin: center;
 }

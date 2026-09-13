@@ -1,7 +1,7 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzmiysegwnrBJ6NfwYYcvrUCDfDlam0OD6y4tHdagFb2DilFCZk6rVYJeiR0Nc__3oGlg/exec";
 
 const quizData = {
-  nagara: [
+  gerabah: [
     {
       question: "Kamu mendengar sebuah cerita tentang kerajinan tanah liat yang sudah ada sejak masa Kerajaan Nagara Daha. Kerajinan ini kemudian terus diwariskan oleh masyarakat Nagara Daha hingga sekarang. Kerajinan apakah yang dimaksud?",
       answers: ["Gerabah Nagara", "Anyaman purun", "Sasirangan", "Ukiran kayu"],
@@ -28,7 +28,7 @@ const quizData = {
       correct: 0
     }
   ],
-  loksado: [
+  aruh_ganal: [
     {
       question: "🌱 Misi pertamamu dimulai!\nSebelum padi ditanam, masyarakat Dayak Loksado punya ritual khusus sebagai tanda dimulainya proses bertani. Namanya apa?",
       answers: ["Aruh Ganal", "Aruh Bawanang", "Aruh Basambu", "Aruh Malaris"],
@@ -59,8 +59,83 @@ const quizData = {
       ],
       correct: 2
     }
+  ],
+  lamang: [
+    {
+      question: "🔥 Lagi jalan-jalan di Kandangan, kamu nemu makanan yang dimasak langsung di dalam bambu muda pakai bara api. Isinya beras ketan. Nah, kamu tau namanya apa?",
+      answers: ["Ketupat Kandangan", "Apam", "Lamang Kandangan", "Bingka"],
+      correct: 2
+    },
+    {
+      question: "😋 Katanya, lamang ketan dalam bambu bukan cuma ada di HSS. Tapi Lamang Kandangan punya “teman makan” yang bikin makin khas. Kira-kira apa aja yaa?",
+      answers: [
+        "Sambal habang, serundeng, dan santan",
+        "Sambal kacang, kacang Nagara, dan hintalu jarum",
+        "Sambal acan, ikan haruan, dan bawang goreng",
+        "Kuah santan, telur rebus, dan abon"
+      ],
+      correct: 1
+    },
+    {
+      question: "🥚 Dari beberapa pilihan ini, menurut kamu mana yang juga dikenal sebagai salah satu pelengkap Lamang Kandangan?",
+      answers: ["Telur dadar", "Telur rebus", "Hintalu jarum atau telur asin", "Telur mata sapi"],
+      correct: 2
+    },
+    {
+      question: "🎉 Kalau lagi ada hajatan atau salamatan di HSS, Lamang Kandangan bisa ikut muncul di meja hidangan. Selain itu, makanan ini juga biasa disajikan saat…",
+      answers: ["Lomba memasak", "Acara sekolah", "Perayaan adat", "Pertandingan olahraga"],
+      correct: 2
+    },
+    {
+      question: "👀 Sama-sama berbahan ketan dan dimasak dalam bambu, tapi Lamang Kandangan tetap punya ciri khas sendiri. Apa ya yang bikin beda?",
+      answers: [
+        "Bentuk bambunya",
+        "Jenis ketannya",
+        "Pelengkap khas seperti sambal kacang, kacang Nagara, dan hintalu jarum",
+        "Cara makannya pakai sendok"
+      ],
+      correct: 2
+    }
+  ],
+  bubungan_tinggi: [
+    {
+      question: "Dalam perjalananmu ke sebuah rumah adat Banjar, pemandu menjelaskan bahwa nama rumah ini berasal dari bentuk atapnya yang menjulang tinggi. Rumah adat yang dimaksud adalah…",
+      answers: ["Rumah Balai Bini", "Rumah Palimasan", "Rumah Bubungan Tinggi", "Rumah Gajah Baliku"],
+      correct: 2
+    },
+    {
+      question: "Saat memasuki rumah tersebut, kamu mengetahui bahwa pada masa lalu tidak semua orang boleh memilikinya. Rumah Bubungan Tinggi dulunya merupakan tempat tinggal bagi…",
+      answers: ["Pedagang di pasar", "Tokoh agama", "Sultan atau kalangan bangsawan Banjar", "Para nelayan"],
+      correct: 2
+    },
+    {
+      question: "Ketika mengamati bentuk bangunannya, kamu melihat bagian atap yang sangat tinggi dan curam. Bentuk atap ini menjadi ciri khas Rumah Bubungan Tinggi karena…",
+      answers: [
+        "Memudahkan pemasangan hiasan",
+        "Sebagai tempat menyimpan hasil panen",
+        "Menjadi identitas utama arsitektur rumah adat Banjar",
+        "Digunakan sebagai menara pengawas"
+      ],
+      correct: 2
+    },
+    {
+      question: "Di dalam rumah, pemandu menjelaskan bahwa setiap ruangan memiliki fungsi yang berbeda sesuai adat Banjar. Bagian rumah yang biasanya digunakan untuk menerima tamu disebut…",
+      answers: ["Panampik Kacil", "Palatar", "Panampik Basar", "Padapuran"],
+      correct: 2
+    },
+    {
+      question: "Menjelang akhir kunjungan, kamu mengetahui bahwa Rumah Bubungan Tinggi bukan sekadar tempat tinggal, tetapi juga melambangkan kedudukan pemiliknya di masyarakat. Filosofi tersebut menunjukkan bahwa rumah ini merupakan simbol…",
+      answers: [
+        "Kehidupan nelayan",
+        "Perdagangan antarpulau",
+        "Martabat, kehormatan, dan status sosial",
+        "Mata pencaharian bertani"
+      ],
+      correct: 2
+    }
   ]
 };
+
 
 let questions = [];
 let currentQuestion = 0;

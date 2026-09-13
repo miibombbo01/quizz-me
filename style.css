@@ -851,3 +851,10 @@ h2,h3{
   transform: scale(1.3);
   transform-origin: center;
 }
+
+/* Khusus untuk soal nomor 3 saat statusnya 'opened' (jawaban diklik) */
+#lamangContainer3.opened img {
+  transform: scale(2.2);          /* Tingkat perbesaran gambar */
+  transform-origin: top right;   /* Fokus titik zoom ke pojok kanan atas (area telur) */
+}
+

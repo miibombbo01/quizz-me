@@ -60,6 +60,58 @@ const quizData = {
       correct: 2
     }
   ],
+    lamang: [
+    {
+      question: "🔥 Lagi jalan-jalan di Kandangan, kamu nemu makanan yang dimasak langsung di dalam bambu muda pakai bara api. Isinya beras ketan. Nah, kamu tau namanya apa?",
+      answers: [
+        "Ketupat Kandangan",
+        "Lamang Kandangan",
+        "Apam",
+        "Bingka"
+      ],
+      correct: 1
+    },
+    {
+      question: "😋 Katanya, lamang ketan dalam bambu bukan cuma ada di HSS. Tapi Lamang Kandangan punya “teman makan” yang bikin makin khas. Kira-kira apa aja yaa?",
+      answers: [
+        "Sambal kacang, kacang Nagara, dan hintalu jarum",
+        "Sambal habang, serundeng, dan santan",
+        "Sambal acan, ikan haruan, dan bawang goreng",
+        "Kuah santan, telur rebus, dan abon"
+      ],
+      correct: 0
+    },
+    {
+      question: "🥚 Dari beberapa pilihan ini, menurut kamu mana yang juga dikenal sebagai salah satu pelengkap Lamang Kandangan?",
+      answers: [
+        "Telur dadar",
+        "Telur rebus",
+        "Telur mata sapi",
+        "Hintalu jarum atau telur asin"
+      ],
+      correct: 3
+    },
+    {
+      question: "🎉 Kalau lagi ada hajatan atau salamatan di HSS, Lamang Kandangan bisa ikut muncul di meja hidangan. Selain itu, makanan ini juga biasa disajikan saat…",
+      answers: [
+        "Lomba memasak",
+        "Perayaan adat",
+        "Acara sekolah",
+        "Pertandingan olahraga"
+      ],
+      correct: 1
+    },
+    {
+      question: "👀 Sama-sama berbahan ketan dan dimasak dalam bambu, tapi Lamang Kandangan tetap punya ciri khas sendiri. Apa ya yang bikin beda?",
+      answers: [
+        "Bentuk bambunya",
+        "Jenis ketannya",
+        "Cara makannya pakai sendok",
+        "Pelengkap khas seperti sambal kacang, kacang Nagara, dan hintalu jarum"
+      ],
+      correct: 3
+    }
+  ],
     bubungan_tinggi: [
     {
       question: "Dalam perjalananmu ke sebuah rumah adat Banjar, pemandu menjelaskan bahwa nama rumah ini berasal dari bentuk atapnya yang menjulang tinggi. Rumah adat yang dimaksud adalah…",

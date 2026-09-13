@@ -792,3 +792,8 @@ h2,h3{
   box-shadow: 0 10px 20px rgba(30, 132, 73, 0.25), 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
+#lamangContainer3.zoomed img {
+  transform: scale(1.8);
+  transform-origin: top right;
+  transition: transform 0.5s ease;
+     }

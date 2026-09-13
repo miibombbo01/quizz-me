@@ -345,6 +345,10 @@ function selectAnswer(button, index) {
   const productsContainer = document.getElementById("productsContainer");
   if (productsContainer) productsContainer.classList.add("opened");
 
+    // Tambahan Pemicu Animasi Lamang
+  const currentLamang = document.querySelector(".lamang-container");
+  if (currentLamang) currentLamang.classList.add("opened");
+
   setTimeout(nextQuestion, 1500);
 }
 

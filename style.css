@@ -432,6 +432,11 @@ h2,h3{
   gap: 12px;
 }
 
+.topic-card.bubungan_tinggi {
+  background: linear-gradient(135deg, #27ae60, #1e8449) !important;
+  box-shadow: 0 10px 20px rgba(30, 132, 73, 0.25), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
 .topic-card {
   border: 3px solid #ffffff;
   border-radius: 20px;

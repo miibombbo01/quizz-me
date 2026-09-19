@@ -316,14 +316,23 @@ function loadQuestion() {
 
   const illustrationArea = document.getElementById("illustrationArea");
   if (illustrationArea) {
-    illustrationArea.innerHTML = "";
-    if (selectedMateri === "gerabah" && currentQuestion === 0) {
-      illustrationArea.innerHTML = `
-        <div class="gift-container" id="giftContainer">
-          <img src="box.png" class="gift-box-img" alt="Box Hadiah">
-          <img src="gerabah.png" class="gerabah-img" alt="Gerabah Nagara">
-        </div>
-      `;
+    if (selectedMateri === "gerabah" || selectedMateri === "lamang") {
+      illustrationArea.style.display = "block";
+      illustrationArea.innerHTML = ""; // Bersihkan konten lama
+
+      if (selectedMateri === "gerabah" && currentQuestion === 0) {
+        illustrationArea.innerHTML = `
+          <div class="gift-container" id="giftContainer">
+            <img src="box.png" class="gift-box-img" alt="Box Hadiah">
+            <img src="gerabah.png" class="gerabah-img" alt="Gerabah Nagara">
+          </div>
+        `;
+      }
+    } else {
+      illustrationArea.style.display = "none";
+      illustrationArea.innerHTML = "";
+    }
+  }
     } else if (selectedMateri === "gerabah" && currentQuestion === 1) {
       illustrationArea.innerHTML = `
         <div class="map-wrapper" id="mapWrapper">
@@ -483,7 +492,7 @@ function resetToTopics() {
   if (questionNumber && questionNumber.parentElement) questionNumber.parentElement.style.display = "block";
   
   const illustrationArea = document.getElementById("illustrationArea");
-  if (illustrationArea) illustrationArea.style.display = "block";
+  if (illustrationArea) illustrationArea.style.display = "none";
 
   window.scrollTo(0, 0);
 }

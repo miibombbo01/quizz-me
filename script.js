@@ -60,7 +60,7 @@ const quizData = {
       correct: 2
     }
   ],
-    lamang: [
+  lamang: [
     {
       question: "🔥 Lagi jalan-jalan di Kandangan, kamu nemu makanan yang dimasak langsung di dalam bambu muda pakai bara api. Isinya beras ketan. Nah, kamu tau namanya apa?",
       answers: [
@@ -112,7 +112,7 @@ const quizData = {
       correct: 3
     }
   ],
-    bubungan_tinggi: [
+  bubungan_tinggi: [
     {
       question: "Dalam perjalananmu ke sebuah rumah adat Banjar, pemandu menjelaskan bahwa nama rumah ini berasal dari bentuk atapnya yang menjulang tinggi. Rumah adat yang dimaksud adalah…",
       answers: [
@@ -163,9 +163,60 @@ const quizData = {
       ],
       correct: 1
     }
+  ],
+  nurtanio: [
+    {
+      question: "👀 Plot twist!\nTernyata ada tokoh penting dalam sejarah penerbangan Indonesia yang lahir di Kandangan. Siapakah tokoh tersebut?",
+      answers: [
+        "Wiweko Soepono",
+        "B.J. Habibie",
+        "Nurtanio Pringgoadisuryo",
+        "Djuanda Kartawidjaja"
+      ],
+      correct: 2
+    },
+    {
+      question: "🛩️ Nurtanio nggak cuma punya mimpi tentang pesawat. Bersama Wiweko Soepono, ia ikut mengembangkan sebuah pesawat layang pada masa awal kemerdekaan. Pesawat apakah itu?",
+      answers: [
+        "Sikumbang",
+        "N-219",
+        "NWG-1 atau Nurtanio-Wiweko-Glider",
+        "CN-235"
+      ],
+      correct: 2
+    },
+    {
+      question: "🔎 Kalau kamu lanjut explore karya Nurtanio, kamu bakal menemukan nama Sikumbang. Apa kaitannya dengan Nurtanio?",
+      answers: [
+        "Nama bandara di Kandangan",
+        "Nama pesawat yang ia rancang",
+        "Nama pesawat layang NWG-1",
+        "Nama organisasi penerbangan"
+      ],
+      correct: 1
+    },
+    {
+      question: "📍 Nurtanio dikenal sebagai salah satu perintis penerbangan Indonesia. Namun, perjalanan hidupnya berakhir saat ia melakukan penerbangan uji coba. Di kota mana peristiwa tersebut terjadi?",
+      answers: [
+        "Jakarta",
+        "Kandangan",
+        "Surabaya",
+        "Bandung"
+      ],
+      correct: 3
+    },
+    {
+      question: "✈️ Last challenge!\nNama Nurtanio ternyata kembali digunakan untuk mengenang jasanya. Pesawat apakah yang kemudian diberi nama Nurtanio pada tahun 2017?",
+      answers: [
+        "Sikumbang",
+        "NWG-1",
+        "N-219",
+        "CN-235"
+      ],
+      correct: 2
+    }
   ]
 };
-
 
 let questions = [];
 let currentQuestion = 0;
@@ -196,7 +247,7 @@ const questionNumber = document.getElementById("questionNumber");
 
 if (startForm) {
   startForm.addEventListener("submit", function (e) {
-    e.preventDefault(); // Mencegah reload halaman
+    e.preventDefault();
     userData.nama = document.getElementById("userName").value.trim();
     userData.alamat = document.getElementById("userAddress").value.trim();
 
@@ -210,9 +261,30 @@ if (startForm) {
   });
 }
 
+// Fungsi mengacak urutan jawaban
+function shuffleAnswers(questionObj) {
+  let answers = [...questionObj.answers];
+  let correctAnswerText = answers[questionObj.correct];
+
+  for (let i = answers.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [answers[i], answers[j]] = [answers[j], answers[i]];
+  }
+
+  let newCorrectIndex = answers.indexOf(correctAnswerText);
+
+  return {
+    ...questionObj,
+    answers: answers,
+    correct: newCorrectIndex
+  };
+}
+
 function selectTopic(materi) {
   selectedMateri = materi;
-  questions = quizData[materi];
+  
+  // Salin dan acak jawaban tiap soal secara otomatis
+  questions = quizData[materi].map(q => shuffleAnswers(q));
 
   topicScreen.style.display = "none";
   quizScreen.style.display = "block";
@@ -284,44 +356,41 @@ function loadQuestion() {
           <img src="after.png" class="products-open-img" alt="Produk Tanah Liat">
         </div>
       `;
+    } else if (selectedMateri === "lamang" && currentQuestion === 0) {
+      illustrationArea.innerHTML = `
+        <div class="lamang-container" id="lamangContainer1">
+          <img src="masak_lemang.png" class="lamang-before-img" alt="Memasak Lemang">
+          <img src="lemang_masak.png" class="lamang-after-img" alt="Lemang Masak">
+        </div>
+      `;
+    } else if (selectedMateri === "lamang" && currentQuestion === 1) {
+      illustrationArea.innerHTML = `
+        <div class="lamang-container" id="lamangContainer2">
+          <img src="lemang_kosong.png" class="lamang-before-img" alt="Lemang Polos">
+          <img src="lemang_ga_kosong.png" class="lamang-after-img" alt="Lemang dengan Pisau">
+        </div>
+      `;
+    } else if (selectedMateri === "lamang" && currentQuestion === 2) {
+      illustrationArea.innerHTML = `
+        <div class="lamang-container zoom-effect" id="lamangContainer3">
+          <img src="lemang_ga_kosong.png" class="lamang-before-img" alt="Lemang dan Telur">
+        </div>
+      `;
+    } else if (selectedMateri === "lamang" && currentQuestion === 3) {
+      illustrationArea.innerHTML = `
+        <div class="lamang-container" id="lamangContainer4">
+          <img src="hajatan.png" class="lamang-before-img" alt="Suasana Hajatan">
+          <img src="perayaan_adat.png" class="lamang-after-img" alt="Perayaan Adat">
+        </div>
+      `;
+    } else if (selectedMateri === "lamang" && currentQuestion === 4) {
+      illustrationArea.innerHTML = `
+        <div class="lamang-container" id="lamangContainer5">
+          <img src="lemang_5.png" class="lamang-before-img" alt="Lemang">
+          <img src="pelengkap_5.png" class="lamang-after-img" alt="Pelengkap Lemang">
+        </div>
+      `;
     }
-
-    // Tambahan untuk materi Lamang Kandangan
-  if (selectedMateri === "lamang" && currentQuestion === 0) {
-    illustrationArea.innerHTML = `
-      <div class="lamang-container" id="lamangContainer1">
-        <img src="masak_lemang.png" class="lamang-before-img" alt="Memasak Lemang">
-        <img src="lemang_masak.png" class="lamang-after-img" alt="Lemang Masak">
-      </div>
-    `;
-  } else if (selectedMateri === "lamang" && currentQuestion === 1) {
-    illustrationArea.innerHTML = `
-      <div class="lamang-container" id="lamangContainer2">
-        <img src="lemang_kosong.png" class="lamang-before-img" alt="Lemang Polos">
-        <img src="lemang_ga_kosong.png" class="lamang-after-img" alt="Lemang dengan Pisau">
-      </div>
-    `;
-  } else if (selectedMateri === "lamang" && currentQuestion === 2) {
-    illustrationArea.innerHTML = `
-      <div class="lamang-container zoom-effect" id="lamangContainer3">
-        <img src="lemang_ga_kosong.png" class="lamang-before-img" alt="Lemang dan Telur">
-      </div>
-    `;
-  } else if (selectedMateri === "lamang" && currentQuestion === 3) {
-    illustrationArea.innerHTML = `
-      <div class="lamang-container" id="lamangContainer4">
-        <img src="hajatan.png" class="lamang-before-img" alt="Suasana Hajatan">
-        <img src="perayaan_adat.png" class="lamang-after-img" alt="Perayaan Adat">
-      </div>
-    `;
-  } else if (selectedMateri === "lamang" && currentQuestion === 4) {
-    illustrationArea.innerHTML = `
-      <div class="lamang-container" id="lamangContainer5">
-        <img src="lemang_5.png" class="lamang-before-img" alt="Lemang">
-        <img src="pelengkap_5.png" class="lamang-after-img" alt="Pelengkap Lemang">
-      </div>
-    `;
-  }
   }
 
   answersEl.innerHTML = "";
@@ -359,7 +428,6 @@ function selectAnswer(button, index) {
     buttons[questions[currentQuestion].correct].classList.add("correct");
   }
 
-  // Pemicu Animasi Gambar
   const giftContainer = document.getElementById("giftContainer");
   if (giftContainer) giftContainer.classList.add("opened");
 
@@ -375,7 +443,6 @@ function selectAnswer(button, index) {
   const productsContainer = document.getElementById("productsContainer");
   if (productsContainer) productsContainer.classList.add("opened");
 
-    // Tambahan Pemicu Animasi Lamang
   const currentLamang = document.querySelector(".lamang-container");
   if (currentLamang) currentLamang.classList.add("opened");
 
@@ -411,7 +478,6 @@ function resetToTopics() {
   quizScreen.style.display = "none";
   topicScreen.style.display = "block";
 
-  // Munculkan kembali elemen kuis yang sempat disembunyikan saat hasil
   if (timerEl && timerEl.parentElement) timerEl.parentElement.style.display = "flex";
   if (progressBar && progressBar.parentElement) progressBar.parentElement.style.display = "block";
   if (questionNumber && questionNumber.parentElement) questionNumber.parentElement.style.display = "block";
@@ -427,7 +493,6 @@ function showResult() {
   const endTime = Date.now();
   totalDurationInSeconds = Math.round((endTime - startTime) / 1000);
 
-  // Sembunyikan elemen sisa kuis (timer, progres, nomor soal, dan ilustrasi)
   if (timerEl && timerEl.parentElement) timerEl.parentElement.style.display = "none";
   if (progressBar && progressBar.parentElement) progressBar.parentElement.style.display = "none";
   if (questionNumber && questionNumber.parentElement) questionNumber.parentElement.style.display = "none";
@@ -452,7 +517,7 @@ function showResult() {
         
         <button onclick="resetToTopics()" class="next-adventure-btn">
           🗺️ Lanjut ke Kuis Lain
-        </button>
+      </button>
     </div>
   `;
 

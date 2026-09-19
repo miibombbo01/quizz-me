@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Pastikan nama file CSS kamu sesuai (style.css atau newh.css) -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,12 +32,12 @@
         </form>
     </div>
 
-            <!-- LAYAR PILIHAN KUIS -->
+    <!-- LAYAR PILIHAN KUIS -->
     <div id="topicScreen" class="topic-box" style="display: none;">
         <h2 class="topic-title">Pilih Petualanganmu!</h2>
         <p class="topic-desc">Pilih salah satu kuis di bawah ini untuk memulai:</p>
         
-        <div class="topic-container" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="topic-container">
             <button class="topic-card nagara" onclick="selectTopic('gerabah')">
                 <span class="topic-badge">Kuis 1</span>
                 <h3>Gerabah</h3>
@@ -49,59 +50,27 @@
                 <p>Tradisi Pertanian</p>
             </button>
 
-            <button class="topic-card nagara" onclick="selectTopic('lamang')">
+            <button class="topic-card lamang" onclick="selectTopic('lamang')">
                 <span class="topic-badge">Kuis 3</span>
                 <h3>Lamang Kandangan</h3>
                 <p>Kuliner Khas</p>
             </button>
 
-            <button class="topic-card loksado" onclick="selectTopic('bubungan_tinggi')">
+            <button class="topic-card bubungan_tinggi" onclick="selectTopic('bubungan_tinggi')">
                 <span class="topic-badge">Kuis 4</span>
                 <h3>Rumah Bubungan Tinggi</h3>
                 <p>Arsitektur Banjar</p>
             </button>
 
-            <!-- LAYAR PILIHAN KUIS -->
-<div id="topicScreen" class="topic-box" style="display: none;">
-    <h2 class="topic-title">Pilih Petualanganmu!</h2>
-    <p class="topic-desc">Pilih salah satu kuis di bawah ini untuk memulai:</p>
-    
-    <div class="topic-container">
-        <button class="topic-card nagara" onclick="selectTopic('gerabah')">
-            <span class="topic-badge">Kuis 1</span>
-            <h3>Gerabah</h3>
-            <p>Kerajinan Tradisional</p>
-        </button>
-
-        <button class="topic-card loksado" onclick="selectTopic('aruh_ganal')">
-            <span class="topic-badge">Kuis 2</span>
-            <h3>Aruh Ganal</h3>
-            <p>Tradisi Pertanian</p>
-        </button>
-
-        <button class="topic-card lamang" onclick="selectTopic('lamang')">
-            <span class="topic-badge">Kuis 3</span>
-            <h3>Lamang Kandangan</h3>
-            <p>Kuliner Khas</p>
-        </button>
-
-        <button class="topic-card bubungan_tinggi" onclick="selectTopic('bubungan_tinggi')">
-            <span class="topic-badge">Kuis 4</span>
-            <h3>Rumah Bubungan Tinggi</h3>
-            <p>Arsitektur Banjar</p>
-        </button>
-
-        <button class="topic-card nurtanio" onclick="selectTopic('nurtanio')">
-    <span class="topic-badge">Kuis 5</span>
-    <h3>Tokoh Penerbangan</h3>
-    <p>Nurtanio Pringgoadisuryo</p>
-        </button>
-    </div>
-</div>
+            <button class="topic-card nurtanio" onclick="selectTopic('nurtanio')">
+                <span class="topic-badge">Kuis 5</span>
+                <h3>Tokoh Penerbangan</h3>
+                <p>Nurtanio Pringgoadisuryo</p>
+            </button>
         </div>
     </div>
 
-        <!-- AREA KUIS -->
+    <!-- AREA KUIS -->
     <div id="quizScreen" style="display:none;">
         <div class="progress">
             <div class="progress-bar" id="progressBar"></div>
@@ -112,7 +81,7 @@
             <span>⏱ <span id="timer">30</span> detik</span>
         </div>
 
-        <!-- TEMPAT ANIMASI/KADO (Di Luar Board) -->
+        <!-- TEMPAT ANIMASI/KADO -->
         <div id="illustrationArea"></div>
 
         <div class="quiz-box">
@@ -125,6 +94,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<!-- Pastikan nama file JS kamu sesuai (script.js atau newh.js) -->
 <script src="script.js"></script>
 </body>
 </html>

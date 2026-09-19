@@ -863,3 +863,8 @@ h2,h3{
   transform-origin: top right;   /* Fokus titik zoom ke pojok kanan atas (area telur) */
 }
 
+/* Gradasi Warna Khusus Tokoh Penerbangan */
+.topic-card.nurtanio {
+  background: linear-gradient(135deg, #2980b9, #2c3e50) !important;
+  box-shadow: 0 10px 20px rgba(41, 128, 185, 0.25), 0 4px 6px rgba(0, 0, 0, 0.05);
+}

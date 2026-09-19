@@ -507,11 +507,14 @@ h2,h3{
 
 #illustrationArea {
   width: 100%;
-  min-height: 130px;
+  max-width: 360px;
+  margin: 0 auto 12px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .gift-container {
@@ -803,15 +806,16 @@ h2,h3{
   transition: transform 0.5s ease;
      }
 
-/* Container Utama Ilustrasi */
 #illustrationArea {
   width: 100%;
   max-width: 360px;
-  height: 180px; /* Batasi tinggi maksimum agar tidak makan tempat */
   margin: 0 auto 12px auto;
   position: relative;
   overflow: hidden;
   border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lamang-container {

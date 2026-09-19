@@ -32,40 +32,60 @@
         </form>
     </div>
 
-    <!-- LAYAR PILIHAN KUIS -->
+        <!-- LAYAR PILIHAN KUIS -->
     <div id="topicScreen" class="topic-box" style="display: none;">
         <h2 class="topic-title">Pilih Petualanganmu!</h2>
         <p class="topic-desc">Pilih salah satu kuis di bawah ini untuk memulai:</p>
         
-        <div class="topic-container">
-            <button class="topic-card nagara" onclick="selectTopic('gerabah')">
-                <span class="topic-badge">Kuis 1</span>
-                <h3>Gerabah</h3>
-                <p>Kerajinan Tradisional</p>
-            </button>
-
-            <button class="topic-card loksado" onclick="selectTopic('aruh_ganal')">
+        <div class="category-group">
+            <h3 class="category-title">Adat</h3>
+            <button class="topic-card list-card loksado" onclick="selectTopic('aruh_ganal')">
                 <span class="topic-badge">Kuis 2</span>
-                <h3>Aruh Ganal</h3>
-                <p>Tradisi Pertanian</p>
+                <div class="card-text">
+                    <h3>Aruh Ganal</h3>
+                    <p>Tradisi Pertanian</p>
+                </div>
             </button>
 
-            <button class="topic-card lamang" onclick="selectTopic('lamang')">
-                <span class="topic-badge">Kuis 3</span>
-                <h3>Lamang Kandangan</h3>
-                <p>Kuliner Khas</p>
-            </button>
-
-            <button class="topic-card bubungan_tinggi" onclick="selectTopic('bubungan_tinggi')">
+            <button class="topic-card list-card bubungan_tinggi" onclick="selectTopic('bubungan_tinggi')">
                 <span class="topic-badge">Kuis 4</span>
-                <h3>Rumah Bubungan Tinggi</h3>
-                <p>Arsitektur Banjar</p>
+                <div class="card-text">
+                    <h3>Rumah Bubungan Tinggi</h3>
+                    <p>Arsitektur Banjar</p>
+                </div>
             </button>
+        </div>
 
-            <button class="topic-card nurtanio" onclick="selectTopic('nurtanio')">
+        <div class="category-group">
+            <h3 class="category-title">Tokoh</h3>
+            <button class="topic-card list-card nurtanio" onclick="selectTopic('nurtanio')">
                 <span class="topic-badge">Kuis 5</span>
-                <h3>Tokoh Penerbangan</h3>
-                <p>Nurtanio Pringgoadisuryo</p>
+                <div class="card-text">
+                    <h3>Tokoh Penerbangan</h3>
+                    <p>Nurtanio Pringgoadisuryo</p>
+                </div>
+            </button>
+        </div>
+
+        <div class="category-group">
+            <h3 class="category-title">Makanan</h3>
+            <button class="topic-card list-card lamang" onclick="selectTopic('lamang')">
+                <span class="topic-badge">Kuis 3</span>
+                <div class="card-text">
+                    <h3>Lamang Kandangan</h3>
+                    <p>Kuliner Khas</p>
+                </div>
+            </button>
+        </div>
+
+        <div class="category-group">
+            <h3 class="category-title">Kesenian & Kerajinan</h3>
+            <button class="topic-card list-card nagara" onclick="selectTopic('gerabah')">
+                <span class="topic-badge">Kuis 1</span>
+                <div class="card-text">
+                    <h3>Gerabah</h3>
+                    <p>Kerajinan Tradisional</p>
+                </div>
             </button>
         </div>
     </div>
